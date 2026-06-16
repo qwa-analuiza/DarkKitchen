@@ -1,0 +1,277 @@
+[debug] [2026-06-15T22:38:12.849Z] ----------------------------------------------------------------------
+[debug] [2026-06-15T22:38:12.851Z] Command:       /home/pedrolana/.nvm/versions/node/v24.13.0/bin/node /home/pedrolana/.npm/_npx/7750544ccf494d8b/node_modules/.bin/firebase login --no-localhost
+[debug] [2026-06-15T22:38:12.852Z] CLI Version:   15.20.0
+[debug] [2026-06-15T22:38:12.852Z] Platform:      linux
+[debug] [2026-06-15T22:38:12.852Z] Node Version:  v24.13.0
+[debug] [2026-06-15T22:38:12.852Z] Time:          Mon Jun 15 2026 19:38:12 GMT-0300 (Brasilia Standard Time)
+[debug] [2026-06-15T22:38:12.852Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-06-15T22:38:12.854Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[info] i  The Firebase CLI’s MCP server feature can optionally make use of Gemini in Firebase. Learn more about Gemini in Firebase and how it uses your data: https://firebase.google.com/docs/gemini-in-firebase#how-gemini-in-firebase-uses-your-data 
+[debug] [2026-06-15T22:38:13.536Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-06-15T22:38:13.536Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] 
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you. 
+[debug] [2026-06-15T22:39:20.737Z] >>> [apiv2][query] POST https://auth.firebase.tools/attest [none]
+[debug] [2026-06-15T22:39:20.737Z] >>> [apiv2][body] POST https://auth.firebase.tools/attest {"session_id":"7170cdc2-4151-4155-a34e-ebc315614e72"}
+[debug] [2026-06-15T22:39:21.726Z] <<< [apiv2][status] POST https://auth.firebase.tools/attest 200
+[debug] [2026-06-15T22:39:21.726Z] <<< [apiv2][body] POST https://auth.firebase.tools/attest {"token":"Gox54oRURLmF-6iIqYl7NMS0IkfF2tCInrjJxLIQXA0"}
+[info] 
+[info] To sign in to the Firebase CLI:
+[info] 
+[info] 1. Take note of your session ID:
+[info] 
+[info]    7170C
+[info] 
+[info] 2. Visit the URL below on any device and follow the instructions to get your code:
+[info] 
+[info]    https://auth.firebase.tools/login?code_challenge=mTWKB1-xtg5gEbu1QKOtZz2Dz9y1NOXfGRqGfhMKCJA&session=7170cdc2-4151-4155-a34e-ebc315614e72&attest=Gox54oRURLmF-6iIqYl7NMS0IkfF2tCInrjJxLIQXA0
+[info] 
+[info] 3. Paste or enter the authorization code below once you have it:
+[info] 
+[debug] [2026-06-15T22:47:11.449Z] ExitPromptError: User force closed the prompt with SIGINT
+    at Interface.sigint (/home/pedrolana/.npm/_npx/7750544ccf494d8b/node_modules/@inquirer/core/dist/commonjs/lib/create-prompt.js:101:37)
+    at Interface.emit (node:events:508:28)
+    at Interface._ttyWriteDumb (node:readline:477:14)
+    at ReadStream.onkeypress (node:internal/readline/interface:284:20)
+    at ReadStream.emit (node:events:520:35)
+    at emitKeys (node:internal/readline/utils:371:14)
+    at emitKeys.next (<anonymous>)
+    at ReadStream.onData (node:internal/readline/emitKeypressEvents:64:36)
+    at ReadStream.emit (node:events:508:28)
+    at addChunk (node:internal/streams/readable:559:12)
+[error] 
+[error] Error: An unexpected error has occurred.
+[debug] [2026-06-15T22:47:17.119Z] ----------------------------------------------------------------------
+[debug] [2026-06-15T22:47:17.122Z] Command:       /home/pedrolana/.nvm/versions/node/v24.13.0/bin/node /home/pedrolana/.npm/_npx/7750544ccf494d8b/node_modules/.bin/firebase login --no-localhost
+[debug] [2026-06-15T22:47:17.122Z] CLI Version:   15.20.0
+[debug] [2026-06-15T22:47:17.122Z] Platform:      linux
+[debug] [2026-06-15T22:47:17.122Z] Node Version:  v24.13.0
+[debug] [2026-06-15T22:47:17.122Z] Time:          Mon Jun 15 2026 19:47:17 GMT-0300 (Brasilia Standard Time)
+[debug] [2026-06-15T22:47:17.122Z] ----------------------------------------------------------------------
+[debug] 
+[info] i  The Firebase CLI’s MCP server feature can optionally make use of Gemini in Firebase. Learn more about Gemini in Firebase and how it uses your data: https://firebase.google.com/docs/gemini-in-firebase#how-gemini-in-firebase-uses-your-data 
+[info] 
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you. 
+[debug] [2026-06-15T22:47:53.139Z] >>> [apiv2][query] POST https://auth.firebase.tools/attest [none]
+[debug] [2026-06-15T22:47:53.139Z] >>> [apiv2][body] POST https://auth.firebase.tools/attest {"session_id":"ac120fae-f13c-45f1-b15f-e492566fac58"}
+[debug] [2026-06-15T22:47:53.739Z] <<< [apiv2][status] POST https://auth.firebase.tools/attest 200
+[debug] [2026-06-15T22:47:53.739Z] <<< [apiv2][body] POST https://auth.firebase.tools/attest {"token":"g9zbI0sYouoLnw3KUV8Abdl7a05bW2H28aAkfHA2JO4"}
+[info] 
+[info] To sign in to the Firebase CLI:
+[info] 
+[info] 1. Take note of your session ID:
+[info] 
+[info]    AC120
+[info] 
+[info] 2. Visit the URL below on any device and follow the instructions to get your code:
+[info] 
+[info]    https://auth.firebase.tools/login?code_challenge=Aq3CxRYgjFoq8OIW1PAw4ylE-pmmMhyJw3lKOuUzEQ0&session=ac120fae-f13c-45f1-b15f-e492566fac58&attest=g9zbI0sYouoLnw3KUV8Abdl7a05bW2H28aAkfHA2JO4
+[info] 
+[info] 3. Paste or enter the authorization code below once you have it:
+[info] 
+[debug] [2026-06-15T22:49:14.680Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2026-06-15T22:49:14.681Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[debug] [2026-06-15T22:49:15.143Z] <<< [apiv2][status] POST https://accounts.google.com/o/oauth2/token 200
+[debug] [2026-06-15T22:50:08.082Z] ----------------------------------------------------------------------
+[debug] [2026-06-15T22:50:08.084Z] Command:       /home/pedrolana/.nvm/versions/node/v24.13.0/bin/node /home/pedrolana/.npm/_npx/7750544ccf494d8b/node_modules/.bin/firebase deploy --only hosting:loja,firestore:rules
+[debug] [2026-06-15T22:50:08.084Z] CLI Version:   15.20.0
+[debug] [2026-06-15T22:50:08.085Z] Platform:      linux
+[debug] [2026-06-15T22:50:08.085Z] Node Version:  v24.13.0
+[debug] [2026-06-15T22:50:08.085Z] Time:          Mon Jun 15 2026 19:50:08 GMT-0300 (Brasilia Standard Time)
+[debug] [2026-06-15T22:50:08.085Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-06-15T22:50:09.220Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-15T22:50:09.221Z] > authorizing via signed-in user (pauloricardomonteirobatista@gmail.com)
+[debug] [2026-06-15T22:50:09.221Z] [iam] checking project dark-burger for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-06-15T22:50:09.223Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:09.223Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:09.225Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dark-burger:testIamPermissions [none]
+[debug] [2026-06-15T22:50:09.225Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/dark-burger:testIamPermissions  x-goog-user-project=dark-burger
+[debug] [2026-06-15T22:50:09.225Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dark-burger:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-06-15T22:50:10.242Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/dark-burger:testIamPermissions 200
+[debug] [2026-06-15T22:50:10.242Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dark-burger:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-06-15T22:50:10.244Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:10.244Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:10.245Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/dark-burger [none]
+[debug] [2026-06-15T22:50:10.847Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/dark-burger 200
+[debug] [2026-06-15T22:50:10.848Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/dark-burger {"projectId":"dark-burger","projectNumber":"35933791555","displayName":"dark-burger","name":"projects/dark-burger","resources":{"hostingSite":"dark-burger"},"state":"ACTIVE","etag":"1_8e314f3a-c16e-4c44-8a39-e6347f0422a8"}
+[info] 
+[info] === Deploying to 'dark-burger'...
+[info] 
+[info] i  deploying firestore, hosting 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-06-15T22:50:10.856Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:10.857Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:10.857Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/dark-burger/services/firestore.googleapis.com [none]
+[debug] [2026-06-15T22:50:10.857Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/dark-burger/services/firestore.googleapis.com  x-goog-user-project=dark-burger
+[debug] [2026-06-15T22:50:11.987Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/dark-burger/services/firestore.googleapis.com 200
+[debug] [2026-06-15T22:50:11.987Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/dark-burger/services/firestore.googleapis.com [omitted]
+[info] ✔  firestore: required API firestore.googleapis.com is enabled 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-06-15T22:50:11.994Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:11.994Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:11.995Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/dark-burger/databases/(default) [none]
+[debug] [2026-06-15T22:50:12.280Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/dark-burger/databases/(default) 200
+[debug] [2026-06-15T22:50:12.281Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/dark-burger/databases/(default) {"name":"projects/dark-burger/databases/(default)","uid":"61c310f9-03fe-4720-b4ed-ea5840731478","createTime":"2026-06-04T20:09:11.265928Z","updateTime":"2026-06-04T20:09:11.265928Z","locationId":"southamerica-east1","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-06-15T21:50:12.230105Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"i","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IJPisLGqipUDMNf8lbqy7pQD"}
+[error] 
+[error] Error: ../firestore.rules is outside of project directory
+[debug] [2026-06-15T22:50:50.114Z] ----------------------------------------------------------------------
+[debug] [2026-06-15T22:50:50.116Z] Command:       /home/pedrolana/.nvm/versions/node/v24.13.0/bin/node /home/pedrolana/.npm/_npx/7750544ccf494d8b/node_modules/.bin/firebase deploy --only hosting:loja,firestore:rules
+[debug] [2026-06-15T22:50:50.116Z] CLI Version:   15.20.0
+[debug] [2026-06-15T22:50:50.116Z] Platform:      linux
+[debug] [2026-06-15T22:50:50.116Z] Node Version:  v24.13.0
+[debug] [2026-06-15T22:50:50.117Z] Time:          Mon Jun 15 2026 19:50:50 GMT-0300 (Brasilia Standard Time)
+[debug] [2026-06-15T22:50:50.117Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-06-15T22:50:50.979Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-06-15T22:50:50.980Z] > authorizing via signed-in user (pauloricardomonteirobatista@gmail.com)
+[debug] [2026-06-15T22:50:50.981Z] [iam] checking project dark-burger for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2026-06-15T22:50:50.983Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:50.983Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:50.984Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/dark-burger:testIamPermissions [none]
+[debug] [2026-06-15T22:50:50.985Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/dark-burger:testIamPermissions  x-goog-user-project=dark-burger
+[debug] [2026-06-15T22:50:50.985Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dark-burger:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-06-15T22:50:51.416Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/dark-burger:testIamPermissions 200
+[debug] [2026-06-15T22:50:51.416Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/dark-burger:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2026-06-15T22:50:51.417Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:51.417Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:51.418Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/dark-burger [none]
+[debug] [2026-06-15T22:50:52.012Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/dark-burger 200
+[debug] [2026-06-15T22:50:52.013Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/dark-burger {"projectId":"dark-burger","projectNumber":"35933791555","displayName":"dark-burger","name":"projects/dark-burger","resources":{"hostingSite":"dark-burger"},"state":"ACTIVE","etag":"1_8e314f3a-c16e-4c44-8a39-e6347f0422a8"}
+[info] 
+[info] === Deploying to 'dark-burger'...
+[info] 
+[info] i  deploying firestore, hosting 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[info] i  firestore: ensuring required API firestore.googleapis.com is enabled... 
+[debug] [2026-06-15T22:50:52.023Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:52.023Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:52.023Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/dark-burger/databases/(default) [none]
+[debug] [2026-06-15T22:50:52.319Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/dark-burger/databases/(default) 200
+[debug] [2026-06-15T22:50:52.319Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/dark-burger/databases/(default) {"name":"projects/dark-burger/databases/(default)","uid":"61c310f9-03fe-4720-b4ed-ea5840731478","createTime":"2026-06-04T20:09:11.265928Z","updateTime":"2026-06-04T20:09:11.265928Z","locationId":"southamerica-east1","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-06-15T21:50:52.271347Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"i","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IMrZvMSqipUDMNf8lbqy7pQD"}
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2026-06-15T22:50:52.321Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:52.321Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:52.321Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/dark-burger:test [none]
+[debug] [2026-06-15T22:50:52.321Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/dark-burger:test [omitted]
+[debug] [2026-06-15T22:50:53.755Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/dark-burger:test 200
+[debug] [2026-06-15T22:50:53.755Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/dark-burger:test {}
+[info] ✔  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2026-06-15T22:50:53.758Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:53.759Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:53.759Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/dark-burger/sites/darkburguer-admin [none]
+[debug] [2026-06-15T22:50:55.102Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/dark-burger/sites/darkburguer-admin 200
+[debug] [2026-06-15T22:50:55.102Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/dark-burger/sites/darkburguer-admin {"name":"projects/dark-burger/sites/darkburguer-admin","defaultUrl":"https://darkburguer-admin.web.app","type":"USER_SITE"}
+[debug] [2026-06-15T22:50:55.104Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:55.104Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:55.105Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/darkburguer-admin/versions [none]
+[debug] [2026-06-15T22:50:55.105Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/darkburguer-admin/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-06-15T22:50:56.143Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/darkburguer-admin/versions 200
+[debug] [2026-06-15T22:50:56.143Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/darkburguer-admin/versions {"name":"projects/35933791555/sites/darkburguer-admin/versions/a64833b7cbd85f19","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2026-06-15T22:50:56.145Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:56.145Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:56.146Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/dark-burger/releases pageSize=10&pageToken=
+[debug] [2026-06-15T22:50:57.333Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/dark-burger/releases 200
+[debug] [2026-06-15T22:50:57.334Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/dark-burger/releases {"releases":[{"name":"projects/dark-burger/releases/cloud.firestore","rulesetName":"projects/dark-burger/rulesets/8c696d32-12ab-42f8-93fa-494364473311","createTime":"2026-06-04T20:09:16.320437Z","updateTime":"2026-06-04T20:09:16.320437Z"}]}
+[debug] [2026-06-15T22:50:57.335Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:57.335Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:57.336Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/dark-burger/rulesets/8c696d32-12ab-42f8-93fa-494364473311 [none]
+[debug] [2026-06-15T22:50:58.474Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/dark-burger/rulesets/8c696d32-12ab-42f8-93fa-494364473311 200
+[debug] [2026-06-15T22:50:58.475Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/dark-burger/rulesets/8c696d32-12ab-42f8-93fa-494364473311 [omitted]
+[info] i  firestore: uploading rules firestore.rules... 
+[debug] [2026-06-15T22:50:58.478Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:58.478Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:58.479Z] >>> [apiv2][query] POST https://firebaserules.googleapis.com/v1/projects/dark-burger/rulesets [none]
+[debug] [2026-06-15T22:50:58.479Z] >>> [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/dark-burger/rulesets [omitted]
+[debug] [2026-06-15T22:50:59.740Z] <<< [apiv2][status] POST https://firebaserules.googleapis.com/v1/projects/dark-burger/rulesets 200
+[debug] [2026-06-15T22:50:59.740Z] <<< [apiv2][body] POST https://firebaserules.googleapis.com/v1/projects/dark-burger/rulesets {"name":"projects/dark-burger/rulesets/dc07a3fb-35e8-49ac-bf53-68e54d7e6e65","source":{"files":[{"content":"rules_version = '2';\n\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /pedidos/{pedidoId} {\n      allow read, write: if true;\n    }\n\n    match /products/{productId} {\n      allow read, write: if true;\n    }\n\n    match /usuarios/{userId} {\n      allow read, write: if true;\n    }\n\n    match /entregadores/{entregadorId} {\n      allow read, write: if true;\n    }\n  }\n}\n","name":"firestore.rules"}]},"createTime":"2026-06-15T22:50:59.591519Z","metadata":{"services":["cloud.firestore"]}}
+[debug] [2026-06-15T22:50:59.740Z] [rules] created ruleset projects/dark-burger/rulesets/dc07a3fb-35e8-49ac-bf53-68e54d7e6e65
+[info] i  hosting[darkburguer-admin]: beginning deploy... 
+[info] i  hosting[darkburguer-admin]: found 4 files in dist/sabor-na-brasa/browser 
+[debug] [2026-06-15T22:50:59.758Z] [hosting] uploading with 200 concurrency
+[debug] [2026-06-15T22:50:59.759Z] [hosting] hash cache [ZGlzdC9zYWJvci1uYS1icmFzYS9icm93c2Vy] not populated
+[debug] [2026-06-15T22:50:59.796Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:59.797Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:50:59.797Z] [hosting] hash cache [ZGlzdC9zYWJvci1uYS1icmFzYS9icm93c2Vy] stored for 4 files
+[debug] [2026-06-15T22:50:59.798Z] [hosting][hash queue][FINAL] {"max":34,"min":3,"avg":12,"active":0,"complete":4,"success":4,"errored":0,"retried":0,"total":4,"elapsed":38}
+[debug] [2026-06-15T22:50:59.798Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/35933791555/sites/darkburguer-admin/versions/a64833b7cbd85f19:populateFiles [none]
+[debug] [2026-06-15T22:50:59.799Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/35933791555/sites/darkburguer-admin/versions/a64833b7cbd85f19:populateFiles {"files":{"/styles-QKW7PSJT.css":"cd5f74a6ec74d17f4088f554d42916cde397b4f14d8cff6dbb2d841d0f135e92","/index.html":"8508b9e5ad2c627c80b345fd72b584e973ef4bfc73100f9a00818e9ee8597ef8","/polyfills-FFHMD2TL.js":"f407557f892bcbe85a54a266154344586a50f40057ade2483a6b3c9ef1cbd39b","/main-CQX236KQ.js":"8f17f0671ce8e92622bf76c804ca52d406c6621961776de073649adb7f2883a0"}}
+[debug] [2026-06-15T22:51:00.715Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/35933791555/sites/darkburguer-admin/versions/a64833b7cbd85f19:populateFiles 200
+[debug] [2026-06-15T22:51:00.716Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/35933791555/sites/darkburguer-admin/versions/a64833b7cbd85f19:populateFiles {"uploadRequiredHashes":["8508b9e5ad2c627c80b345fd72b584e973ef4bfc73100f9a00818e9ee8597ef8","f407557f892bcbe85a54a266154344586a50f40057ade2483a6b3c9ef1cbd39b","8f17f0671ce8e92622bf76c804ca52d406c6621961776de073649adb7f2883a0","cd5f74a6ec74d17f4088f554d42916cde397b4f14d8cff6dbb2d841d0f135e92"],"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files"}
+[debug] [2026-06-15T22:51:00.717Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:00.717Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:00.718Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:00.718Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:00.718Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:00.719Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:00.720Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:00.720Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:00.721Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/8508b9e5ad2c627c80b345fd72b584e973ef4bfc73100f9a00818e9ee8597ef8 [none]
+[debug] [2026-06-15T22:51:00.721Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/8508b9e5ad2c627c80b345fd72b584e973ef4bfc73100f9a00818e9ee8597ef8 [stream]
+[debug] [2026-06-15T22:51:00.724Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/f407557f892bcbe85a54a266154344586a50f40057ade2483a6b3c9ef1cbd39b [none]
+[debug] [2026-06-15T22:51:00.725Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/f407557f892bcbe85a54a266154344586a50f40057ade2483a6b3c9ef1cbd39b [stream]
+[debug] [2026-06-15T22:51:00.727Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/8f17f0671ce8e92622bf76c804ca52d406c6621961776de073649adb7f2883a0 [none]
+[debug] [2026-06-15T22:51:00.727Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/8f17f0671ce8e92622bf76c804ca52d406c6621961776de073649adb7f2883a0 [stream]
+[debug] [2026-06-15T22:51:00.728Z] >>> [apiv2][query] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/cd5f74a6ec74d17f4088f554d42916cde397b4f14d8cff6dbb2d841d0f135e92 [none]
+[debug] [2026-06-15T22:51:00.728Z] >>> [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/cd5f74a6ec74d17f4088f554d42916cde397b4f14d8cff6dbb2d841d0f135e92 [stream]
+[debug] [2026-06-15T22:51:00.730Z] [hosting][populate queue][FINAL] {"max":924,"min":924,"avg":924,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":934}
+[debug] [2026-06-15T22:51:00.730Z] [hosting] uploads queued: 4
+[info] i  hosting: uploading new files [0/4] (0%) 
+[debug] [2026-06-15T22:51:02.046Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/8508b9e5ad2c627c80b345fd72b584e973ef4bfc73100f9a00818e9ee8597ef8 200
+[debug] [2026-06-15T22:51:02.046Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/8508b9e5ad2c627c80b345fd72b584e973ef4bfc73100f9a00818e9ee8597ef8 [stream]
+[debug] [2026-06-15T22:51:02.047Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/f407557f892bcbe85a54a266154344586a50f40057ade2483a6b3c9ef1cbd39b 200
+[debug] [2026-06-15T22:51:02.047Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/f407557f892bcbe85a54a266154344586a50f40057ade2483a6b3c9ef1cbd39b [stream]
+[debug] [2026-06-15T22:51:02.252Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/cd5f74a6ec74d17f4088f554d42916cde397b4f14d8cff6dbb2d841d0f135e92 200
+[debug] [2026-06-15T22:51:02.252Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/cd5f74a6ec74d17f4088f554d42916cde397b4f14d8cff6dbb2d841d0f135e92 [stream]
+[debug] [2026-06-15T22:51:02.266Z] <<< [apiv2][status] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/8f17f0671ce8e92622bf76c804ca52d406c6621961776de073649adb7f2883a0 200
+[debug] [2026-06-15T22:51:02.266Z] <<< [apiv2][body] POST https://upload-firebasehosting.googleapis.com/upload/sites/darkburguer-admin/versions/a64833b7cbd85f19/files/8f17f0671ce8e92622bf76c804ca52d406c6621961776de073649adb7f2883a0 [stream]
+[debug] [2026-06-15T22:51:02.267Z] [hosting][upload queue][FINAL] {"max":1549,"min":1330,"avg":1435.75,"active":0,"complete":4,"success":4,"errored":0,"retried":0,"total":4,"elapsed":1551}
+[info] i  hosting: upload complete 
+[info] ✔  hosting[darkburguer-admin]: file upload complete 
+[debug] [2026-06-15T22:51:02.268Z] [hosting] deploy completed after 2522ms
+[debug] [2026-06-15T22:51:02.269Z] [rules] releasing cloud.firestore with ruleset projects/dark-burger/rulesets/dc07a3fb-35e8-49ac-bf53-68e54d7e6e65
+[debug] [2026-06-15T22:51:02.269Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:02.270Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:02.270Z] >>> [apiv2][query] PATCH https://firebaserules.googleapis.com/v1/projects/dark-burger/releases/cloud.firestore [none]
+[debug] [2026-06-15T22:51:02.271Z] >>> [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/dark-burger/releases/cloud.firestore {"release":{"name":"projects/dark-burger/releases/cloud.firestore","rulesetName":"projects/dark-burger/rulesets/dc07a3fb-35e8-49ac-bf53-68e54d7e6e65"}}
+[debug] [2026-06-15T22:51:03.685Z] <<< [apiv2][status] PATCH https://firebaserules.googleapis.com/v1/projects/dark-burger/releases/cloud.firestore 200
+[debug] [2026-06-15T22:51:03.686Z] <<< [apiv2][body] PATCH https://firebaserules.googleapis.com/v1/projects/dark-burger/releases/cloud.firestore {"name":"projects/dark-burger/releases/cloud.firestore","rulesetName":"projects/dark-burger/rulesets/dc07a3fb-35e8-49ac-bf53-68e54d7e6e65","createTime":"2026-06-04T20:09:16.320437Z","updateTime":"2026-06-15T22:51:03.466756Z"}
+[debug] [2026-06-15T22:51:03.686Z] [rules] updated release projects/dark-burger/releases/cloud.firestore
+[info] ✔  firestore: released rules firestore.rules to cloud.firestore 
+[debug] [2026-06-15T22:51:03.687Z] [
+  {
+    "config": {
+      "target": "loja",
+      "public": "dist/sabor-na-brasa/browser",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "darkburguer-admin"
+    },
+    "version": "projects/35933791555/sites/darkburguer-admin/versions/a64833b7cbd85f19"
+  }
+]
+[info] i  hosting[darkburguer-admin]: finalizing version... 
+[debug] [2026-06-15T22:51:03.692Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:03.693Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:03.693Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/darkburguer-admin/versions/a64833b7cbd85f19 updateMask=status%2Cconfig
+[debug] [2026-06-15T22:51:03.694Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/darkburguer-admin/versions/a64833b7cbd85f19 {"status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]}}
+[debug] [2026-06-15T22:51:04.504Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/darkburguer-admin/versions/a64833b7cbd85f19 200
+[debug] [2026-06-15T22:51:04.504Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/darkburguer-admin/versions/a64833b7cbd85f19 {"name":"projects/35933791555/sites/darkburguer-admin/versions/a64833b7cbd85f19","status":"FINALIZED","config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2026-06-15T22:50:55.395002Z","createUser":{"email":"pauloricardomonteirobatista@gmail.com"},"finalizeTime":"2026-06-15T22:51:04.303112Z","finalizeUser":{"email":"pauloricardomonteirobatista@gmail.com"}}
+[debug] [2026-06-15T22:51:04.504Z] [hosting] finalized version for darkburguer-admin:[object Object]
+[info] ✔  hosting[darkburguer-admin]: version finalized 
+[info] i  hosting[darkburguer-admin]: releasing new version... 
+[debug] [2026-06-15T22:51:04.505Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:04.505Z] Checked if tokens are valid: true, expires at: 1781567354143
+[debug] [2026-06-15T22:51:04.506Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/darkburguer-admin/channels/live/releases versionName=projects%2F35933791555%2Fsites%2Fdarkburguer-admin%2Fversions%2Fa64833b7cbd85f19
+[debug] [2026-06-15T22:51:04.506Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/darkburguer-admin/channels/live/releases {}
+[debug] [2026-06-15T22:51:05.145Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/darkburguer-admin/channels/live/releases 200

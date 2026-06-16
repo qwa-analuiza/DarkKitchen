@@ -1,0 +1,174 @@
+$bg-main: #13131a;
+$bg-surface: #1c1c24;
+$bg-sidebar: #0b0b0f;
+$text-primary: #ffffff;
+$text-muted: #82828f;
+
+$color-yellow: #f1b813;
+$color-green: #248a53;
+$color-orange: #d46b13;
+$color-red: #bb2525;
+
+.dashboard-container {
+  display: flex;
+  background-color: $bg-main;
+  color: $text-primary;
+  min-height: 100vh;
+  width: 100vw;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+// SIDEBAR CORRIGIDA COM POSICIONAMENTO DO RODAPÉ TRAVADO
+.sidebar {
+  width: 240px;
+  background-color: $bg-sidebar;
+  display: flex !important;
+  flex-direction: column !important;
+  border-right: 1px solid #25252f;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding-bottom: 90px; // Espaço reservado para o menu bottom absoluto
+  z-index: 100;
+}
+
+.sidebar-header {
+  padding: 30px 20px;
+  flex-shrink: 0;
+  
+  .logo {
+    display: flex; align-items: center; gap: 12px;
+    .logo-box { background: $color-yellow; border-radius: 8px; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; font-size: 16px; color: #000; }
+    .logo-text h2 { font-size: 16px; font-weight: 700; color: #ffffff; margin: 0; }
+    .logo-text p { font-size: 11px; color: $text-muted; margin: 0; }
+  }
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 6px;
+
+  &.sidebar-nav-top {
+    flex: 1;
+  }
+
+  &.sidebar-nav-bottom {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #1f1f26;
+    padding-top: 15px;
+    box-sizing: border-box;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .nav-item {
+    display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+    color: $text-muted; text-decoration: none; font-size: 14px; font-weight: 500;
+    border-radius: 8px; cursor: pointer; transition: all 0.2s ease;
+
+    .nav-icon { font-size: 16px; display: flex; align-items: center; }
+
+    &:hover { color: #ffffff; background: rgba(255, 255, 255, 0.04); }
+
+    &.active {
+      background-color: $color-yellow !important;
+      color: #000000 !important;
+      font-weight: 600 !important;
+      span { color: #000000 !important; }
+    }
+  }
+}
+
+.link-logout {
+  color: #ff4d4d !important;
+  &:hover { background: rgba(255, 77, 77, 0.12) !important; }
+}
+
+// MAIN CONTENT CONFIGURADO ADAPTÁVEL
+.main-content {
+  flex: 1;
+  margin-left: 240px;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.page-header {
+  margin-bottom: 30px;
+  h1 { font-size: 26px; font-weight: 700; margin: 0 0 6px 0; color: #ffffff; }
+  p { font-size: 14px; color: $text-muted; margin: 0; }
+}
+
+.metrics-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 35px;
+}
+
+.metric-card {
+  background-color: $bg-surface; border-radius: 10px; padding: 22px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  &.border-yellow { border: 1px solid rgba($color-yellow, 0.5); }
+  &.border-green { border: 1px solid rgba($color-green, 0.4); }
+  &.border-orange { border: 1px solid rgba($color-orange, 0.4); }
+  &.border-red { border: 1px solid rgba($color-red, 0.5); }
+
+  .metric-body { display: flex; flex-direction: column; }
+  .metric-label { font-size: 13px; color: $text-muted; margin-bottom: 8px; }
+  .metric-value { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+  .metric-sub { font-size: 12px; color: $text-muted; }
+  .yellow-text { color: $color-yellow; }
+  .red-text { color: #f25c5c; }
+
+  .metric-badge-icon {
+    width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;
+    &.yellow-bg { background: rgba($color-yellow, 0.15); color: $color-yellow; }
+    &.green-bg { background: rgba($color-green, 0.15); color: $color-green; }
+    &.orange-bg { background: rgba($color-orange, 0.15); color: $color-orange; }
+    &.red-bg { background: rgba($color-red, 0.15); color: #ff5c5c; font-weight: bold; }
+  }
+}
+
+.dashboard-split-layout { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 25px; }
+.vertical-blocks-stack { display: flex; flex-direction: column; gap: 25px; }
+.content-block {
+  background-color: $bg-surface; border-radius: 12px; padding: 24px;
+  h3 { font-size: 16px; font-weight: 600; margin: 0 0 20px 0; color: #ffffff; }
+  .block-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; h3 { margin: 0; } }
+}
+
+.pill-badge { background-color: #fcae13; color: #000000; font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+.activity-timeline { display: flex; flex-direction: column; gap: 14px; }
+.timeline-row {
+  display: flex; align-items: center; background-color: rgba(0, 0, 0, 0.18); border-radius: 8px; padding: 12px 18px; gap: 16px;
+  .timeline-icon-wrapper {
+    width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px;
+    &.yellow-border { color: $color-yellow; }
+    &.green-border { color: $color-green; }
+    &.orange-border { color: $color-orange; }
+    &.green-solid-border { color: #2ecc71; }
+  }
+  .timeline-data { flex: 1; h4 { font-size: 14px; font-weight: 600; margin: 0 0 3px 0; color: #fff; } p { font-size: 12px; color: $text-muted; margin: 0; } }
+  .timeline-time { font-size: 12px; color: $text-muted; }
+}
+
+.operation-metric {
+  margin-bottom: 22px; &:last-child { margin-bottom: 0; }
+  .metric-header-row { display: flex; justify-content: space-between; font-size: 14px; font-weight: 500; margin-bottom: 8px; }
+  .custom-progress-track { background-color: #2b2b36; height: 8px; border-radius: 10px; overflow: hidden; margin-bottom: 8px; }
+  .custom-progress-bar {
+    height: 100%; border-radius: 10px;
+    &.yellow-bar { background-color: $color-yellow; }
+    &.green-bar { background-color: #27ae60; }
+  }
+  .metric-caption { font-size: 12px; color: $text-muted; }
+  .yellow-text { color: $color-yellow; font-weight: 600; }
+  .green-text { color: #27ae60; font-weight: 600; }
+}

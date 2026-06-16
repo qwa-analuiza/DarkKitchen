@@ -1,0 +1,193 @@
+<aside class="cozinha-sidebar-left">
+  <!-- Topo da Sidebar: Logo -->
+  <div class="cozinha-sidebar-brand">
+    <div class="cozinha-brand-wrapper">
+      <span class="cozinha-brand-icon-box">🔥</span>
+      <div class="cozinha-brand-text">
+        <h2>Sabor na Brasa</h2>
+        <p>Painel Admin</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Menu Superior: Navegação Principal com ativação de cor dinâmica -->
+  <nav class="cozinha-sidebar-menu cozinha-sidebar-menu-top">
+    <a (click)="router.navigate(['/dashboard'])" [class.active-link]="router.url === '/dashboard'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">📊</span><span>Dashboard</span>
+    </a>
+    <a (click)="router.navigate(['/cozinha'])" [class.active-link]="router.url === '/cozinha'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">👨‍🍳</span><span>Cozinha</span>
+    </a>
+    <a (click)="router.navigate(['/pedidos'])" [class.active-link]="router.url === '/pedidos'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">🛍️</span><span>Pedidos</span>
+    </a>
+    <a (click)="router.navigate(['/cardapio'])" [class.active-link]="router.url === '/cardapio'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">📜</span><span>Cardápio</span>
+    </a>
+    <a (click)="router.navigate(['/entregas'])" [class.active-link]="router.url === '/entregas'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">🛵</span><span>Entregas</span>
+    </a>
+    <a (click)="router.navigate(['/administracao'])" [class.active-link]="router.url === '/administracao'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">📈</span><span>Administração</span>
+    </a>
+  </nav>
+
+  <!-- Menu Inferior: Configurações e Sair no Canto Inferior Esquerdo -->
+  <nav class="cozinha-sidebar-menu cozinha-sidebar-menu-bottom">
+    <a (click)="router.navigate(['/configuracoes'])" [class.active-link]="router.url === '/configuracoes'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">⚙️</span><span>Configurações</span>
+    </a>
+    <a (click)="router.navigate(['/'])" class="cozinha-menu-link link-logout">
+      <span class="cozinha-link-icon">🚪</span><span>Sair</span>
+    </a>
+  </nav>
+</aside>
+
+  <main class="cozinha-main-workspace">
+    <header class="menu-split-header">
+      <div class="cozinha-workspace-header">
+        <h1>Cardápio Digital</h1>
+        <p>Gerencie os produtos, preços e disponibilidade do restaurante</p>
+      </div>
+      <button class="btn-novo-prato" (click)="abrirModalNovoPrato()">
+        <span>➕</span> Novo Prato
+      </button>
+    </header>
+
+    <div class="history-toolbar-row">
+      <div class="history-search-input-wrapper">
+        <span class="search-lens-icon">🔍</span>
+        <input 
+          type="text" 
+          [(ngModel)]="searchQuery" 
+          (input)="filtrarPratos()" 
+          placeholder="Buscar prato por nome ou ingrediente..."
+        >
+      </div>
+      <div class="menu-categories-tabs">
+        <button [class.active]="categoriaSelecionada === 'todos'" (click)="filtrarPorCategoria('todos')">Todos</button>
+        @for (categoria of categoriasDisponiveis; track categoria) {
+          <button [class.active]="categoriaSelecionada === categoria" (click)="filtrarPorCategoria(categoria)">
+            {{ nomeCategoria(categoria) }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="dishes-grid-layout">
+      @for (prato of pratosFiltrados; track prato.id) {
+        <div class="dish-premium-card" [class.dish-disabled]="!prato.disponivel">
+          <div class="dish-image-placeholder">
+            @if (prato.imagemUrl) {
+              <img [src]="prato.imagemUrl" alt="{{ prato.nome }}" class="dish-real-image">
+            } @else {
+              <span class="dish-icon-media">
+                {{ prato.categoria === 'bebidas' ? '🍹' : prato.categoria === 'entradas' ? '🍟' : '🥩' }}
+              </span>
+            }
+            <div class="status-indicator-tag" [class.tag-ativo]="prato.disponivel" [class.tag-inativo]="!prato.disponivel">
+              {{ prato.disponivel ? 'Disponível' : 'Indisponível' }}
+            </div>
+          </div>
+          <div class="dish-card-info">
+            <div class="dish-top-meta">
+              <div class="dish-tag-category">{{ prato.categoria | uppercase }}</div>
+              <span class="dish-price-tag">R$ {{ prato.preco | number:'1.2-2' }}</span>
+            </div>
+            <h3>{{ prato.nome }}</h3>
+            <p class="dish-description">{{ prato.descricao }}</p>
+            
+            <div class="dish-footer-action-row">
+              <button class="btn-main-toggle" 
+                      [class.btn-is-active]="prato.disponivel" 
+                      (click)="alternarDisponibilidade(prato)">
+                {{ prato.disponivel ? 'Desativar' : 'Ativar' }}
+              </button>
+              
+              <div class="btn-side-group">
+                <button class="btn-side-edit" title="Editar Prato" (click)="editarPrato(prato)">✏️</button>
+                <button class="btn-side-delete" title="Deletar Prato" (click)="deletarPrato(prato.id)">🗑️</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </main>
+
+  @if (modalNovoPratoAberto) {
+    <div class="cozinha-overlay-box">
+      <div class="cozinha-modal-wrapper">
+        <div class="cozinha-modal-title-row">
+          <h2>{{ modoEdicao ? 'Editar' : 'Cadastrar' }} <span class="text-gold-color">Novo Prato</span></h2>
+          <button class="cozinha-modal-close-trigger" (click)="fecharModalNovoPrato()">×</button>
+        </div>
+        <div class="cozinha-modal-scroller">
+          
+          <div class="form-image-upload-section">
+            <div class="image-preview-container" (click)="uploadInput.click()">
+              @if (novoPrato.imagemUrl) {
+                <img [src]="novoPrato.imagemUrl" class="preview-img">
+              } @else {
+                <div class="upload-placeholder">
+                  <span>📸</span>
+                  <p>Adicionar foto do prato</p>
+                </div>
+              }
+            </div>
+            <input #uploadInput type="file" (change)="processarUploadImagem($event)" accept="image/*" style="display: none;">
+          </div>
+
+          <div class="form-input-container">
+            <label>Nome do Prato/Item</label>
+            <input type="text" [(ngModel)]="novoPrato.nome" placeholder="Ex: Picanha na Chapa Executiva">
+          </div>
+          <div class="form-input-container">
+            <label>Categoria</label>
+            <select [(ngModel)]="novoPrato.categoria" class="form-select-dark">
+              <option value="principais">Pratos Principais</option>
+              <option value="entradas">Entradas / Petiscos</option>
+              <option value="bebidas">Bebidas</option>
+            </select>
+          </div>
+          <div class="form-input-container">
+            <label>Preço de Venda (R$)</label>
+            <input type="number" [(ngModel)]="novoPrato.preco" placeholder="0,00" step="0.01">
+          </div>
+          <div class="form-input-container">
+            <label>Descrição dos Ingredientes</label>
+            <input type="text" [(ngModel)]="novoPrato.descricao" placeholder="Ex: Serve 2 pessoas, acompanha arroz e farofa">
+          </div>
+          
+          <div class="form-checkbox-container">
+            <label class="custom-checkbox-label">
+              <input type="checkbox" [(ngModel)]="novoPrato.disponivel">
+              <span>Disponível para venda</span>
+            </label>
+          </div>
+
+          <div class="modal-action-buttons-row">
+            <button class="btn-modal-cancel" (click)="fecharModalNovoPrato()">Cancelar</button>
+            <button class="cozinha-btn-action btn-gold text-bold" (click)="salvarNovoPrato()">
+              {{ modoEdicao ? 'Salvar Alterações' : 'Criar' }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @if (modalLogoutAberto) {
+    <div class="cozinha-overlay-box overlay-logout animate-fade">
+      <div class="cozinha-modal-wrapper modal-logout-box">
+        <div class="logout-header">
+          <span class="logout-alert-icon">🚪</span>
+          <h2>Tem certeza que deseja sair?</h2>
+          <p>Você precisará inserir suas credenciais para acessar o painel administrativo novamente.</p>
+        </div>
+        <div class="logout-actions-row">
+          <button class="cozinha-btn-action btn-gray-cancel" (click)="fecharModalLogout()">Não, Voltar</button>
+          <button class="cozinha-btn-action btn-red-confirm" (click)="confirmarSair()">Sim, Sair</button>
+        </div>
+      </div>
+    </div>
+  }

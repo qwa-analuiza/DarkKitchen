@@ -1,0 +1,50 @@
+<div class="container">
+
+  <div class="logo-area">
+    <div class="logo-icon">
+      <span class="material-icons">local_fire_department</span>
+    </div>
+
+    <h1>DARK BURGER</h1>
+    <p>Premium Dark Kitchen</p>
+  </div>
+
+  <div class="card">
+
+    <form (submit)="$event.preventDefault()">
+
+      <label>Email</label>
+      <input
+        type="email"
+        placeholder="seu@email.com"
+        [(ngModel)]="email"
+        name="email">
+
+      <label>Senha</label>
+      <input
+        type="password"
+        placeholder="••••••••"
+        [(ngModel)]="senha"
+        name="senha">
+
+      <a routerLink="/esqueci" class="forgot">
+        Esqueci minha senha
+      </a>
+
+      <button
+        type="button"
+        class="entrar"
+        (click)="login()">
+        Entrar
+      </button>
+
+      <p class="signup">
+        Não tem conta?
+        <a routerLink="/cadastro"><span>Criar conta</span></a>
+      </p>
+
+    </form>
+
+  </div>
+
+</div>

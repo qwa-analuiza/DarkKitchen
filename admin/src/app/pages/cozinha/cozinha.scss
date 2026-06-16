@@ -1,0 +1,334 @@
+// ==========================================
+// 1. VARIÁVEIS DE COR E LAYOUT (PALETA SOBERANA)
+// ==========================================
+$bg-main: #060608;
+$bg-sidebar: #0b0b0f;
+$bg-card-container: #13131a;
+$bg-card-surface: #1c1c24;
+
+$text-white: #ffffff;
+$text-muted: #82828f;
+
+$color-gold: #f1b813;
+$color-orange: #d46b13;
+$color-green: #248a53;
+$color-blue: #2980b9;
+
+// ==========================================
+// 2. ESTRUTURA GLOBAL E WORKSPACE
+// ==========================================
+.cozinha-page-root {
+  display: flex;
+  background-color: $bg-main;
+  color: $text-white;
+  min-height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+}
+
+.cozinha-main-workspace {
+  flex: 1;
+  margin-left: 240px; 
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.cozinha-workspace-header {
+  margin-bottom: 25px;
+  h1 { font-size: 24px; font-weight: 700; margin: 0 0 4px 0; }
+  p { font-size: 13px; color: $text-muted; margin: 0; }
+}
+
+// ==========================================
+// 3. BARRA LATERAL UNIFICADA (.cozinha-sidebar-left & .sidebar)
+// ==========================================
+.cozinha-sidebar-left, .sidebar {
+  width: 240px;
+  background-color: $bg-sidebar;
+  border-right: 1px solid #25252f;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding-bottom: 25px;
+  z-index: 100;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+.cozinha-sidebar-brand, .sidebar-header {
+  padding: 30px 20px;
+  .cozinha-brand-wrapper, .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .cozinha-brand-icon-box, .logo-box {
+      background: $color-gold;
+      border-radius: 8px;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #000000;
+    }
+    .cozinha-brand-text, .logo-text {
+      h2 { font-size: 16px; font-weight: 700; color: $text-white; margin: 0; }
+      p { font-size: 11px; color: $text-muted; margin: 0; }
+    }
+  }
+}
+
+// NAVEGAÇÃO INTERNA DA SIDEBAR
+.cozinha-sidebar-menu, .sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 6px;
+
+  &.cozinha-sidebar-menu-top, &.sidebar-nav-top {
+    flex: 1 !important;
+  }
+
+  &.cozinha-sidebar-menu-bottom, &.sidebar-nav-bottom {
+    border-top: 1px solid #1f1f26 !important;
+    padding-top: 15px !important;
+    margin-top: auto !important;
+  }
+
+  .cozinha-menu-link, .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    color: $text-muted;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: $text-white;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    // Classes Ativas Combinadas para Suportar ambos os padrões
+    &.active-link, &.is-active-tab, &.active {
+      background-color: $color-gold !important;
+      color: #000000 !important;
+      font-weight: 600 !important;
+      span, svg { color: #000000 !important; fill: #000000 !important; }
+    }
+  }
+}
+
+.link-logout {
+  color: #ff4d4d !important;
+  &:hover {
+    background: rgba(255, 77, 77, 0.12) !important;
+    color: $text-white !important;
+  }
+}
+
+// ==========================================
+// 4. QUADRO KANBAN (GRID DE COLUNAS)
+// ==========================================
+.cozinha-board-flex-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.cozinha-board-column {
+  background-color: $bg-card-container;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  max-height: 80vh;
+  border: 1px solid #1f1f26;
+}
+
+.cozinha-column-top {
+  padding: 16px;
+  border-bottom: 1px solid #23232b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  h3 { font-size: 13px; font-weight: 600; margin: 0; color: $text-white; }
+  .cozinha-column-counter { color: $text-muted; font-size: 12px; }
+}
+
+.cozinha-column-scroll-area {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+// ==========================================
+// 5. CARDS DE PEDIDOS INTERNOS
+// ==========================================
+.cozinha-order-card {
+  background-color: $bg-card-surface;
+  border-radius: 6px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+
+  &.card-border-gray { border: 1px solid #2d2d38; }
+  &.card-border-orange { border: 1px solid rgba($color-orange, 0.6); cursor: pointer; }
+  &.card-border-yellow { border: 1px solid rgba($color-gold, 0.6); }
+  &.card-border-green { border: 1px solid rgba($color-green, 0.6); }
+}
+
+.cozinha-card-top-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  .cozinha-order-number { font-size: 13px; font-weight: 700; color: $color-gold; }
+  .cozinha-order-timer { font-size: 11px; color: $text-muted; margin-left: auto; }
+  
+  .cozinha-pill-status {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 12px;
+    
+    &.pill-recebido { background: rgba(#7f8c8d, 0.2); color: #bdc3c7; }
+    &.pill-aguardando { background: rgba($color-orange, 0.2); color: #f39c12; }
+    &.pill-preparo { background: rgba($color-gold, 0.2); color: $color-gold; }
+    &.pill-pronto { background: rgba($color-green, 0.2); color: #2ecc71; }
+  }
+}
+
+.cozinha-card-customer { font-size: 13px; font-weight: 500; }
+
+.cozinha-card-items {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-top: 1px solid #262633;
+  border-bottom: 1px solid #262633;
+  padding: 8px 0;
+  .cozinha-item-row { font-size: 12px; color: #b3b3bc; }
+}
+
+.cozinha-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &.flex-end-layout { justify-content: space-between; }
+  .cozinha-card-price { font-size: 14px; font-weight: 700; color: $color-gold; }
+}
+
+.cozinha-double-button-box { display: flex; align-items: center; gap: 10px; }
+
+// ==========================================
+// 6. COMPONENTES DE BOTÕES
+// ==========================================
+.cozinha-btn-action {
+  border: none;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  
+  &.btn-gold { background-color: $color-gold; color: #000000; }
+  &.btn-green { background-color: $color-green; color: $text-white; }
+  &.btn-blue { background-color: $color-blue; color: $text-white; }
+  &:hover { opacity: 0.9; }
+}
+
+.cozinha-btn-link {
+  background: none;
+  border: none;
+  color: $text-muted;
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: underline;
+  &:hover { color: $text-white; }
+}
+
+// ==========================================
+// 7. MODAIS E WINDOW OVERLAYS
+// ==========================================
+.cozinha-overlay-box {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+
+.cozinha-modal-wrapper {
+  background-color: $bg-card-surface;
+  border: 1px solid #2d2d38;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 460px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.cozinha-modal-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border-bottom: 1px solid #262633;
+  h2 { margin: 0; font-size: 16px; font-weight: 600; }
+  .text-gold-color { color: $color-gold; }
+}
+
+.cozinha-modal-close-trigger {
+  background: none; border: none; color: $text-muted;
+  font-size: 22px; cursor: pointer;
+  &:hover { color: $text-white; }
+}
+
+.cozinha-modal-scroller {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cozinha-detail-group {
+  strong { font-size: 10px; color: $text-muted; display: block; margin-bottom: 2px; text-transform: uppercase; }
+  p { margin: 0; font-size: 13px; color: $text-white; }
+}
+
+.cozinha-modal-items-subcard {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+  .cozinha-subcard-item { display: flex; justify-content: space-between; font-size: 12px; }
+}
+
+.cozinha-modal-total-bottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #262633;
+  padding-top: 14px;
+  font-size: 15px;
+  font-weight: 700;
+  .text-green-color { color: #2ecc71; }
+}

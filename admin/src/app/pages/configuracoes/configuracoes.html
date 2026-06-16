@@ -1,0 +1,293 @@
+<div class="cozinha-page-root">
+  
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-box">🔥</span>
+        <div class="logo-text">
+          <h2>Sabor na Brasa</h2>
+          <p>Painel Admin</p>
+        </div>
+      </div>
+    </div>
+    
+    <nav class="sidebar-nav sidebar-nav-top">
+      <a (click)="router.navigate(['/dashboard'])" [class.active]="router.url === '/dashboard'" class="nav-item">
+        <span class="nav-icon">📊</span><span>Dashboard</span>
+      </a>
+      <a (click)="router.navigate(['/cozinha'])" [class.active]="router.url === '/cozinha'" class="nav-item">
+        <span class="nav-icon">👨‍🍳</span><span>Cozinha</span>
+      </a>
+      <a (click)="router.navigate(['/pedidos'])" [class.active]="router.url === '/pedidos'" class="nav-item">
+        <span class="nav-icon">🛍️</span><span>Pedidos</span>
+      </a>
+      <a (click)="router.navigate(['/cardapio'])" [class.active]="router.url === '/cardapio'" class="nav-item">
+        <span class="nav-icon">📜</span><span>Cardápio</span>
+      </a>
+      <a (click)="router.navigate(['/entregas'])" [class.active]="router.url === '/entregas'" class="nav-item">
+        <span class="nav-icon">🛵</span><span>Entregas</span>
+      </a>
+      <a (click)="router.navigate(['/administracao'])" [class.active]="router.url === '/administracao'" class="nav-item">
+        <span class="nav-icon">📈</span><span>Administração</span>
+      </a>
+    </nav>
+
+    <nav class="sidebar-nav sidebar-nav-bottom">
+      <a (click)="router.navigate(['/configuracoes'])" [class.active]="router.url === '/configuracoes'" class="nav-item">
+        <span class="nav-icon">⚙️</span><span>Configurações</span>
+      </a>
+      <a (click)="abrirModalLogout()" class="nav-item link-logout">
+        <span class="nav-icon">🚪</span><span>Sair</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="cozinha-main-workspace">
+    <header class="cozinha-workspace-header">
+      <h1>Configurações do Sistema</h1>
+      <p>Gerencie as informações da sede, equipe interna e entregadores parceiros</p>
+    </header>
+
+    <div class="config-tabs-nav">
+      <button class="tab-btn" [class.active]="abaAtiva === 'restaurante'" (click)="mudarAba('restaurante')">
+        🏢 Dados do Restaurante
+      </button>
+      <button class="tab-btn" [class.active]="abaAtiva === 'equipe'" (click)="mudarAba('equipe')">
+        👥 Equipe Interna
+      </button>
+      <button class="tab-btn" [class.active]="abaAtiva === 'motoboys'" (click)="mudarAba('motoboys')">
+        🛵 Painel de Motoboys
+      </button>
+    </div>
+
+    <div class="config-content-container">
+
+      @if (abaAtiva === 'restaurante') {
+        <div class="config-pane animate-fade">
+          <form class="config-full-form" (ngSubmit)="salvarDadosRestaurante()">
+            <div class="form-section-row">
+              <div class="config-section-title">
+                <h3>Informações da Unidade Sede</h3>
+                <p>Estes dados são exibidos no cabeçalho do app e notas fiscais</p>
+              </div>
+            </div>
+            
+            <div class="config-form-grid">
+              <div class="form-group span-6">
+                <label>Nome do Restaurante</label>
+                <input type="text" [(ngModel)]="dadosRestaurante.nome" name="nomeRestaurante">
+              </div>
+
+              <div class="form-group span-3">
+                <label>📞 Telefone de Atendimento</label>
+                <input type="text" [(ngModel)]="dadosRestaurante.telefone" name="telRestaurante">
+              </div>
+
+              <div class="form-group span-3">
+                <label>📍 CEP</label>
+                <input type="text" [(ngModel)]="dadosRestaurante.cep" name="cepRestaurante">
+              </div>
+
+              <div class="form-group span-8">
+                <label>🏠 Endereço Completo</label>
+                <input type="text" [(ngModel)]="dadosRestaurante.endereco" name="endRestaurante">
+              </div>
+
+              <div class="form-group span-4">
+                <label>🛵 Taxa Base de Entrega (R$)</label>
+                <input type="number" step="0.01" [(ngModel)]="dadosRestaurante.taxaEntrega" name="taxaRestaurante">
+              </div>
+
+              <div class="form-group span-3">
+                <label>🕒 Horário de Abertura</label>
+                <input type="time" [(ngModel)]="dadosRestaurante.horarioAbertura" name="aberturaRestaurante">
+              </div>
+
+              <div class="form-group span-3">
+                <label>🕒 Horário de Fechamento</label>
+                <input type="time" [(ngModel)]="dadosRestaurante.horarioFechamento" name="fechamentoRestaurante">
+              </div>
+
+              <div class="form-group span-6">
+                <label>✉️ E-mail Administrativo</label>
+                <input type="email" value="contato&#64;sabornabrasa.com" readonly class="input-readonly">
+              </div>
+
+              <div class="form-group span-12">
+                <label>📝 Sobre o Restaurante / Informações Adicionais</label>
+                <textarea rows="4" [(ngModel)]="dadosRestaurante.sobre" name="sobreRestaurante" placeholder="Breve descrição sobre a cozinha ou avisos padrão para os clientes..."></textarea>
+              </div>
+            </div>
+            
+            <div class="form-actions-footer">
+              <button type="submit" class="cozinha-btn-action btn-gold">Salvar Alterações</button>
+            </div>
+          </form>
+        </div>
+      }
+
+      @if (abaAtiva === 'equipe') {
+        <div class="config-pane animate-fade">
+          <div class="config-section-header">
+            <div class="config-section-title">
+              <h3>Gestão de Funcionários</h3>
+              <p>Controle de colaboradores internos e permissões de tela</p>
+            </div>
+            <button class="cozinha-btn-action btn-gold" (click)="abrirModalMembro('equipe')">+ Novo Integrante</button>
+          </div>
+
+          <div class="team-cards-stack">
+            @for (membro of equipe; track membro.id) {
+              <div class="team-employee-card">
+                <img [src]="membro.foto || 'assets/default-avatar.png'" class="employee-avatar-img" alt="Foto">
+                <div class="employee-details">
+                  <h4>{{ membro.nome }} {{ membro.sobrenome }}</h4>
+                  <div class="employee-tags">
+                    <span class="tag-role">{{ membro.cargo }}</span>
+                    <span class="tag-status" [class.active]="membro.ativo">
+                      {{ membro.ativo ? 'Disponível' : 'Inativo' }}
+                    </span>
+                  </div>
+                  <p class="employee-meta">
+                    <span>📞 {{ membro.telefone }}</span> | <span>💳 CPF: {{ membro.cpf }}</span> | <span>📍 CEP: {{ membro.cep }}</span>
+                  </p>
+                </div>
+                <div class="employee-actions">
+                  <label class="switch-toggle">
+                    <input type="checkbox" [checked]="membro.ativo" (change)="alternarAtivo(membro)">
+                    <span class="slider-round"></span>
+                  </label>
+                  <button class="cozinha-btn-action btn-red-outline" (click)="removerMembro(membro.id, 'equipe')">🗑️ Remover</button>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+      @if (abaAtiva === 'motoboys') {
+        <div class="config-pane animate-fade">
+          <div class="config-section-header">
+            <div class="config-section-title">
+              <h3>Entregadores Parceiros</h3>
+              <p>Monitore os motoboys ativos e documentações de trânsito</p>
+            </div>
+            <button class="cozinha-btn-action btn-gold" (click)="abrirModalMembro('motoboy')">+ Novo Motoboy</button>
+          </div>
+
+          <div class="team-cards-stack">
+            @for (motoboy of motoboys; track motoboy.id) {
+              <div class="team-employee-card border-delivery">
+                <img [src]="motoboy.foto || 'assets/default-avatar.png'" class="employee-avatar-img" alt="Foto">
+                <div class="employee-details">
+                  <h4>{{ motoboy.nome }} {{ motoboy.sobrenome }}</h4>
+                  <div class="employee-tags">
+                    <span class="tag-role role-delivery">🪪 CNH: {{ motoboy.cnh }}</span>
+                    <span class="tag-status active">{{ motoboy.entregas }} Corridas</span>
+                  </div>
+                  <p class="employee-meta">
+                    <span>📞 {{ motoboy.telefone }}</span> | <span>💳 CPF: {{ motoboy.cpf }}</span> | <span>📍 CEP: {{ motoboy.cep }}</span>
+                  </p>
+                </div>
+                <div class="employee-actions">
+                  <label class="switch-toggle">
+                    <input type="checkbox" [checked]="motoboy.ativo" (change)="alternarAtivo(motoboy)">
+                    <span class="slider-round"></span>
+                  </label>
+                  <button class="cozinha-btn-action btn-red-outline" (click)="removerMembro(motoboy.id, 'motoboy')">🗑️ Remover</button>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
+    </div>
+  </main>
+
+  @if (modalCadastroAberto) {
+    <div class="cozinha-overlay-box">
+      <div class="cozinha-modal-wrapper modal-large">
+        <div class="cozinha-modal-title-row">
+          <h2>Cadastrar Novo {{ tipoCadastro === 'equipe' ? 'Colaborador Interno' : 'Motoboy Parceiro' }}</h2>
+          <button class="cozinha-modal-close-trigger" (click)="fecharModal()">×</button>
+        </div>
+        
+        <form class="cozinha-modal-scroller" (ngSubmit)="adicionarMembro()">
+          <div class="modal-upload-section">
+            <label class="upload-placeholder">
+              <span class="upload-icon">📷</span>
+              <span>Selecionar Foto de Perfil</span>
+              <input type="file" (change)="aoSelecionarFoto($event)" accept="image/*" class="input-file-hidden">
+            </label>
+            @if (fotoPreview) {
+              <div class="preview-badge">✓ Imagem carregada</div>
+            }
+          </div>
+
+          <div class="modal-form-grid">
+            <div class="form-group-modal">
+              <label>Nome</label>
+              <input type="text" [(ngModel)]="novoMembro.nome" name="membroNome" required placeholder="Ex: João">
+            </div>
+            <div class="form-group-modal">
+              <label>Sobrenome</label>
+              <input type="text" [(ngModel)]="novoMembro.sobrenome" name="membroSobrenome" required placeholder="Ex: Silva">
+            </div>
+            <div class="form-group-modal">
+              <label>CPF</label>
+              <input type="text" [(ngModel)]="novoMembro.cpf" name="membroCpf" required placeholder="000.000.000-00">
+            </div>
+            <div class="form-group-modal">
+              <label>Telefone</label>
+              <input type="text" [(ngModel)]="novoMembro.telefone" name="membroTel" required placeholder="(11) 99999-9999">
+            </div>
+            <div class="form-group-modal">
+              <label>CEP</label>
+              <input type="text" [(ngModel)]="novoMembro.cep" name="membroCep" required placeholder="00000-000">
+            </div>
+
+            @if (tipoCadastro === 'equipe') {
+              <div class="form-group-modal">
+                <label>Cargo / Função</label>
+                <select [(ngModel)]="novoMembro.cargo" name="membroCargo">
+                  <option value="Gerente">Gerente</option>
+                  <option value="Administrador">Administrador</option>
+                  <option value="Cozinha">Cozinha</option>
+                  <option value="Operacional">Operacional</option>
+                </select>
+              </div>
+            } @else {
+              <div class="form-group-modal">
+                <label>Número da CNH (Obrigatório)</label>
+                <input type="text" [(ngModel)]="novoMembro.cnh" name="membroCnh" required placeholder="Ex: 12345678900">
+              </div>
+            }
+          </div>
+
+          <div class="modal-form-actions">
+            <button type="button" class="cozinha-btn-link" (click)="fecharModal()">Cancelar</button>
+            <button type="submit" class="cozinha-btn-action btn-green">Salvar Cadastro</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  }
+
+  @if (modalLogoutAberto) {
+    <div class="cozinha-overlay-box overlay-logout animate-fade">
+      <div class="cozinha-modal-wrapper modal-logout-box">
+        <div class="logout-header">
+          <span class="logout-alert-icon">🚪</span>
+          <h2>Tem certeza que deseja sair?</h2>
+          <p>Você precisará inserir suas credenciais para acessar o painel administrativo novamente.</p>
+        </div>
+        <div class="logout-actions-row">
+          <button class="cozinha-btn-action btn-gray-cancel" (click)="fecharModalLogout()">Não, Voltar</button>
+          <button class="cozinha-btn-action btn-red-confirm" (click)="confirmarSair()">Sim, Sair</button>
+        </div>
+      </div>
+    </div>
+  }
+
+</div>

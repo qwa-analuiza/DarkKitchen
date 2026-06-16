@@ -1,0 +1,152 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #13131a; /* Cor padrão escura */
+  overflow-x: hidden;
+}
+
+:root {
+  --primary-color: #e67e22;
+  --primary-dark: #d35400;
+  --secondary-color: #2c3e50;
+  --success-color: #27ae60;
+  --danger-color: #e74c3c;
+  --warning-color: #f39c12;
+  --info-color: #3498db;
+  --light-gray: #ecf0f1;
+  --dark-gray: #7f8c8d;
+  --text-color: #2c3e50;
+  --border-color: #ddd;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background: #f5f5f5;
+}
+
+button {
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e67e22;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d35400;
+}
+
+/* ESTILOS DO POP-UP DE CONFIRMAÇÃO DE SAÍDA */
+.overlay-logout {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.85) !important;
+  backdrop-filter: blur(4px) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  z-index: 9999 !important;
+}
+
+.modal-logout-box {
+  max-width: 420px !important;
+  width: 90% !important;
+  padding: 30px !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+  background-color: #1c1c24 !important;
+  border: 1px solid #2d2d38 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6) !important;
+
+  .logout-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin-bottom: 25px !important;
+
+    .logout-alert-icon {
+      font-size: 36px !important;
+      background: rgba(255, 77, 77, 0.12) !important;
+      width: 64px !important;
+      height: 64px !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border-radius: 50% !important;
+    }
+
+    h2 {
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      color: #ffffff !important;
+      margin: 0 !important;
+    }
+
+    p {
+      font-size: 13px !important;
+      color: #82828f !important;
+      margin: 0 !important;
+      line-height: 1.5 !important;
+    }
+  }
+
+  .logout-actions-row {
+    display: flex !important;
+    gap: 12px !important;
+    justify-content: center !important;
+
+    .btn-gray-cancel {
+      background-color: #2d2d38 !important;
+      color: #ffffff !important;
+      border: none !important;
+      border-radius: 6px !important;
+      padding: 10px 20px !important;
+      cursor: pointer !important;
+      font-weight: 600 !important;
+      &:hover { background-color: #3d3d4a !important; }
+    }
+
+    .btn-red-confirm {
+      background-color: #ff4d4d !important;
+      color: #ffffff !important;
+      font-weight: 700 !important;
+      border: none !important;
+      border-radius: 6px !important;
+      padding: 10px 20px !important;
+      cursor: pointer !important;
+      &:hover { background-color: #e04343 !important; }
+    }
+  }
+}

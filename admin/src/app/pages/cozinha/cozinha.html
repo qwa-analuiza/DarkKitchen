@@ -1,0 +1,250 @@
+<div class="cozinha-page-root">
+  
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-box">🔥</span>
+        <div class="logo-text">
+          <h2>Sabor na Brasa</h2>
+          <p>Painel Admin</p>
+        </div>
+      </div>
+    </div>
+    
+    <nav class="sidebar-nav sidebar-nav-top">
+      <a (click)="router.navigate(['/dashboard'])" [class.active]="router.url === '/dashboard'" class="nav-item">
+        <span class="nav-icon">📊</span><span>Dashboard</span>
+      </a>
+      <a (click)="router.navigate(['/cozinha'])" [class.active]="router.url === '/cozinha'" class="nav-item">
+        <span class="nav-icon">👨‍🍳</span><span>Cozinha</span>
+      </a>
+      <a (click)="router.navigate(['/pedidos'])" [class.active]="router.url === '/pedidos'" class="nav-item">
+        <span class="nav-icon">🛍️</span><span>Pedidos</span>
+      </a>
+      <a (click)="router.navigate(['/cardapio'])" [class.active]="router.url === '/cardapio'" class="nav-item">
+        <span class="nav-icon">📜</span><span>Cardápio</span>
+      </a>
+      <a (click)="router.navigate(['/entregas'])" [class.active]="router.url === '/entregas'" class="nav-item">
+        <span class="nav-icon">🛵</span><span>Entregas</span>
+      </a>
+      <a (click)="router.navigate(['/administracao'])" [class.active]="router.url === '/administracao'" class="nav-item">
+        <span class="nav-icon">📈</span><span>Administração</span>
+      </a>
+    </nav>
+
+    <nav class="sidebar-nav sidebar-nav-bottom">
+      <a (click)="router.navigate(['/configuracoes'])" [class.active]="router.url === '/configuracoes'" class="nav-item">
+        <span class="nav-icon">⚙️</span><span>Configurações</span>
+      </a>
+      <a (click)="router.navigate(['/'])" class="nav-item link-logout">
+        <span class="nav-icon">🚪</span><span>Sair</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="cozinha-main-workspace">
+    <header class="cozinha-workspace-header">
+      <h1>Gestão da Cozinha</h1>
+      <p>Acompanhe o preparo dos pedidos em tempo real</p>
+    </header>
+
+    <div class="cozinha-board-flex-grid">
+      
+      <div class="cozinha-board-column">
+        <div class="cozinha-column-top">
+          <h3>Pedido Recebido</h3>
+          <span class="cozinha-column-counter">{{ pedidosRecebidos.length }} pedidos</span>
+        </div>
+        <div class="cozinha-column-scroll-area">
+          @for (pedido of pedidosRecebidos; track pedido.id) {
+            <div class="cozinha-order-card card-border-gray">
+              <div class="cozinha-card-top-row">
+                <span class="cozinha-order-number">{{ pedido.numero }}</span>
+                <span class="cozinha-pill-status pill-recebido">Recebido</span>
+                <span class="cozinha-order-timer">🕒 {{ minutosDesde(pedido) }} min</span>
+              </div>
+              <div class="cozinha-card-customer">👤 {{ pedido.cliente }}</div>
+              <div class="cozinha-card-items">
+                @for (item of pedido.itens; track $index) {
+                  <div class="cozinha-item-row">• {{ item.quantidade }}x {{ item.nome }}</div>
+                }
+              </div>
+              <div class="cozinha-card-footer">
+                <span class="cozinha-card-price">R$ {{ pedido.valorTotal | number:'1.2-2' }}</span>
+                <button class="cozinha-btn-action btn-gold" (click)="moverParaAguardando(pedido)">Iniciar</button>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="cozinha-board-column">
+        <div class="cozinha-column-top">
+          <h3>Aguardando Preparo</h3>
+          <span class="cozinha-column-counter">{{ pedidosAguardando.length }} pedidos</span>
+        </div>
+        <div class="cozinha-column-scroll-area">
+          @for (pedido of pedidosAguardando; track pedido.id) {
+            <div class="cozinha-order-card card-border-orange" (click)="moverParaPreparo(pedido)">
+              <div class="cozinha-card-top-row">
+                <span class="cozinha-order-number">{{ pedido.numero }}</span>
+                <span class="cozinha-pill-status pill-aguardando">Aguardando</span>
+                <span class="cozinha-order-timer">🕒 {{ minutosDesde(pedido) }} min</span>
+              </div>
+              <div class="cozinha-card-customer">👤 {{ pedido.cliente }}</div>
+              <div class="cozinha-card-items">
+                @for (item of pedido.itens; track $index) {
+                  <div class="cozinha-item-row">• {{ item.quantidade }}x {{ item.nome }}</div>
+                }
+              </div>
+              <div class="cozinha-card-footer">
+                <span class="cozinha-card-price">R$ {{ pedido.valorTotal | number:'1.2-2' }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="cozinha-board-column">
+        <div class="cozinha-column-top">
+          <h3>Em Preparo</h3>
+          <span class="cozinha-column-counter">{{ pedidosPreparo.length }} pedidos</span>
+        </div>
+        <div class="cozinha-column-scroll-area">
+          @for (pedido of pedidosPreparo; track pedido.id) {
+            <div class="cozinha-order-card card-border-yellow">
+              <div class="cozinha-card-top-row">
+                <span class="cozinha-order-number">{{ pedido.numero }}</span>
+                <span class="cozinha-pill-status pill-preparo">Em Preparo</span>
+                <span class="cozinha-order-timer">🕒 {{ minutosDesde(pedido) }} min</span>
+              </div>
+              <div class="cozinha-card-customer">👤 {{ pedido.cliente }}</div>
+              <div class="cozinha-card-items">
+                @for (item of pedido.itens; track $index) {
+                  <div class="cozinha-item-row">• {{ item.quantidade }}x {{ item.nome }}</div>
+                }
+              </div>
+              <div class="cozinha-card-footer">
+                <span class="cozinha-card-price">R$ {{ pedido.valorTotal | number:'1.2-2' }}</span>
+                <button class="cozinha-btn-action btn-green" (click)="moverParaPronto(pedido)">Finalizar</button>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div class="cozinha-board-column">
+        <div class="cozinha-column-top">
+          <h3>Pronto para Retirada</h3>
+          <span class="cozinha-column-counter">{{ pedidosProntos.length }} pedidos</span>
+        </div>
+        <div class="cozinha-column-scroll-area">
+          @for (pedido of pedidosProntos; track pedido.id) {
+            <div class="cozinha-order-card card-border-green">
+              <div class="cozinha-card-top-row">
+                <span class="cozinha-order-number">{{ pedido.numero }}</span>
+                <span class="cozinha-pill-status pill-pronto">Pronto</span>
+                <span class="cozinha-order-timer">🕒 {{ minutosDesde(pedido) }} min</span>
+              </div>
+              <div class="cozinha-card-customer">👤 {{ pedido.cliente }}</div>
+              <div class="cozinha-card-items">
+                @for (item of pedido.itens; track $index) {
+                  <div class="cozinha-item-row">• {{ item.quantidade }}x {{ item.nome }}</div>
+                }
+              </div>
+              <div class="cozinha-card-footer">
+                <span class="cozinha-card-price">R$ {{ pedido.valorTotal | number:'1.2-2' }}</span>
+                <div class="cozinha-double-button-box">
+                  <button class="cozinha-btn-link" (click)="abrirDetalhes(pedido)">Detalhes</button>
+                  <button class="cozinha-btn-action btn-blue" (click)="abrirAtribuirMotoboy(pedido)">Atribuir</button>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  @if (modalAberto && pedidoSelecionado) {
+    <div class="cozinha-overlay-box">
+      <div class="cozinha-modal-wrapper">
+        <div class="cozinha-modal-title-row">
+          <h2>Detalhes do Pedido <span class="text-gold-color">{{ pedidoSelecionado.numero }}</span></h2>
+          <button class="cozinha-modal-close-trigger" (click)="fecharDetalhes()">×</button>
+        </div>
+        <div class="cozinha-modal-scroller">
+          <div class="cozinha-detail-group"><strong>Cliente:</strong><p>{{ pedidoSelecionado.cliente }}</p></div>
+          <div class="cozinha-detail-group"><strong>Telefone:</strong><p>{{ pedidoSelecionado.telefone }}</p></div>
+          <div class="cozinha-detail-group"><strong>Endereço:</strong><p>{{ pedidoSelecionado.endereco }}</p></div>
+          <div class="cozinha-detail-group"><strong>Pagamento:</strong><p>{{ pedidoSelecionado.pagamento }}</p></div>
+          <div class="cozinha-detail-group">
+            <strong>Produtos:</strong>
+            <div class="cozinha-modal-items-subcard">
+              @for (item of pedidoSelecionado.itens; track $index) {
+                <div class="cozinha-subcard-item">
+                  <span>{{ item.quantidade }}x {{ item.nome }}</span>
+                  <span>R$ {{ (item.preco * item.quantidade) | number:'1.2-2' }}</span>
+                </div>
+              }
+            </div>
+          </div>
+          <div class="cozinha-modal-total-bottom">
+            <span>Total:</span>
+            <span class="text-green-color">R$ {{ pedidoSelecionado.valorTotal | number:'1.2-2' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (modalAtribuirAberto && pedidoSelecionado) {
+    <div class="cozinha-overlay-box">
+      <div class="cozinha-modal-wrapper small-modal">
+        <div class="cozinha-modal-title-row">
+          <h2>Atribuir Motoboy ao Pedido <span class="text-gold-color">{{ pedidoSelecionado.numero }}</span></h2>
+          <button class="cozinha-modal-close-trigger" (click)="fecharAtribuirMotoboy()">×</button>
+        </div>
+        <div class="cozinha-modal-scroller">
+          <p class="modal-instruction">Selecione um entregador disponível para realizar a entrega:</p>
+          <div class="motoboys-selection-list">
+            @for (motoboy of motoboys; track motoboy.id) {
+              <div class="motoboy-selection-row" [class.disabled-row]="motoboy.status !== 'disponivel'">
+                <div class="motoboy-profile-summary">
+                  <span class="motoboy-avatar-icon">🛵</span>
+                  <div class="motoboy-name-group">
+                    <strong>{{ motoboy.nome }}</strong>
+                    <span class="motoboy-rating-sub">⭐ {{ motoboy.avaliacao }} • {{ motoboy.entregas }} concluidas</span>
+                  </div>
+                </div>
+                @if (motoboy.status === 'disponivel') {
+                  <button class="cozinha-btn-action btn-green" (click)="confirmarAtribuicao(motoboy.id)">Selecionar</button>
+                } @else {
+                  <span class="badge-status-busy">Em Rota</span>
+                }
+              </div>
+            } @empty {
+              <div class="empty-motoboys">Nenhum motoboy cadastrado no sistema.</div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @if (modalLogoutAberto) {
+    <div class="cozinha-overlay-box overlay-logout animate-fade">
+      <div class="cozinha-modal-wrapper modal-logout-box">
+        <div class="logout-header">
+          <span class="logout-alert-icon">🚪</span>
+          <h2>Tem certeza que deseja sair?</h2>
+          <p>Você precisará inserir suas credenciais para acessar o painel administrativo novamente.</p>
+        </div>
+        <div class="logout-actions-row">
+          <button class="cozinha-btn-action btn-gray-cancel" (click)="fecharModalLogout()">Não, Voltar</button>
+          <button class="cozinha-btn-action btn-red-confirm" (click)="confirmarSair()">Sim, Sair</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

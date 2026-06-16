@@ -1,0 +1,209 @@
+@use "sass:color";
+
+$bg-dark: #000000;
+$card-bg: #1a1a1a;
+$input-bg: #242424;
+$input-border: #333333;
+$brand-yellow: #f1b82d;
+$text-white: #ffffff;
+$text-muted: #888888;
+$error-red: #ff4d4d;
+$success-green: #2ecc71;
+
+.login-wrapper {
+  background-color: $bg-dark;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.login-card {
+  background-color: $card-bg;
+  border: 1px solid #262626;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 440px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+
+  // Logotipo superior
+  .brand-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+
+    .brand-icon {
+      background-color: $brand-yellow;
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .flame-emoji {
+        font-size: 1.2rem;
+        color: #000;
+      }
+    }
+
+    h2 {
+      color: $text-white;
+      font-size: 1.5rem;
+      margin: 0;
+      font-weight: 600;
+    }
+  }
+
+  // Título e subtítulo do formulário
+  .form-title {
+    text-align: center;
+    margin-bottom: 30px;
+
+    h3 {
+      color: $text-white;
+      font-size: 1.2rem;
+      margin: 0 0 6px 0;
+      font-weight: 500;
+    }
+
+    p {
+      color: $text-muted;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+  }
+
+  // Grupos de campos (E-mail e Senha)
+  .input-group {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      color: $text-white;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    input {
+      width: 100%;
+      background-color: $input-bg;
+      border: 1px solid $input-border;
+      border-radius: 6px;
+      padding: 12px 16px;
+      color: $text-white;
+      font-size: 0.95rem;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $brand-yellow;
+        box-shadow: 0 0 0 2px rgba(241, 184, 45, 0.1);
+      }
+
+      &::placeholder {
+        color: #555555;
+      }
+    }
+  }
+
+  // Ações de Lembrete e Esqueci a Senha
+  .form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    font-size: 0.85rem;
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: $text-muted;
+      cursor: pointer;
+      user-select: none;
+
+      input {
+        cursor: pointer;
+        accent-color: $brand-yellow;
+        margin: 0;
+      }
+    }
+
+    .forgot-password {
+      color: $text-muted;
+      text-decoration: none;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $brand-yellow;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // Caixas de Alerta (Erro / Sucesso)
+  .alert {
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    text-align: center;
+
+    &-error {
+      background-color: rgba($error-red, 0.1);
+      color: $error-red;
+      border: 1px solid rgba($error-red, 0.2);
+    }
+
+    &-success {
+      background-color: rgba($success-green, 0.1);
+      color: $success-green;
+      border: 1px solid rgba($success-green, 0.2);
+    }
+  }
+
+  // Botão Amarelo de Envio do Print
+  .btn-submit {
+    width: 100%;
+    background-color: $brand-yellow;
+    color: #000000;
+    border: none;
+    border-radius: 6px;
+    padding: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+
+    &:hover:not(:disabled) {
+      background-color: darken($brand-yellow, 5%);
+    }
+
+    &:active:not(:disabled) {
+      transform: scale(0.99);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+  a {
+  cursor: pointer;
+  text-decoration: none; // Opcional: remove aquele sublinhado padrão se quiser
+  
+  &:hover {
+    color: #f1b813; // Opcional: faz o link brilhar em dourado quando o mouse passa por cima!
+  }
+}
+}

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "dark-burger"
+  },
+  "targets": {
+    "dark-burger": {
+      "hosting": {
+        "cliente": [
+          "darkburguer-client"
+        ]
+      }
+    }
+  }
+}

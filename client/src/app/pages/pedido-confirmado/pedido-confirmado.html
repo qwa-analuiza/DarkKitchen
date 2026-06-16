@@ -1,0 +1,65 @@
+<main class="success-container">
+  
+  <div class="success-icon-wrapper">
+    <span class="material-icons success-check">check_circle_outline</span>
+  </div>
+
+  <h1 class="success-title">Pedido confirmado!</h1>
+  <p class="success-subtitle">Seu pedido foi recebido com sucesso</p>
+
+  <div class="status-card">
+    <span class="order-number-label">Número do pedido</span>
+    <h2 class="order-number">#{{ numeroPedido }}</h2>
+
+    <div class="card-divider"></div>
+
+    <div class="info-row">
+      <span class="material-icons icon-accent">access_time</span>
+      <div class="info-text">
+        <h3>Tempo estimado</h3>
+        <p>35-45 minutos</p>
+      </div>
+    </div>
+
+    <div class="info-row">
+      <span class="material-icons icon-accent">location_on</span>
+      <div class="info-text">
+        <h3>Endereço de entrega</h3>
+        <p>{{ enderecoEntrega.rua }}, {{ enderecoEntrega.numero }} - {{ enderecoEntrega.bairro }}</p>
+      </div>
+    </div>
+
+    <div class="progress-box">
+      <h3>Status do pedido</h3>
+      
+      <ul class="status-list">
+        <li class="status-item active">
+          <span class="status-dot"></span>
+          Pedido confirmado
+        </li>
+        <li class="status-item disabled">
+          <span class="status-dot"></span>
+          Preparando pedido
+        </li>
+        <li class="status-item disabled">
+          <span class="status-dot"></span>
+          Saiu para entrega
+        </li>
+        <li class="status-item disabled">
+          <span class="status-dot"></span>
+          Entregue
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="actions-group">
+    <button type="button" class="button-primary" (click)="fazerOutroPedido()">
+      Fazer outro pedido
+    </button>
+    <button type="button" class="button-secondary" (click)="verMeusPedidos()">
+      Ver meus pedidos
+    </button>
+  </div>
+
+</main>

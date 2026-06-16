@@ -1,0 +1,340 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #050505;
+
+  --card: #121212;
+  --card-border: #2a2a2a;
+
+  --text: #ffffff;
+  --muted: #9c9c9c;
+
+  --orange: #ff9228;
+  --orange-dark: #f48116;
+
+  --danger: #ff0048;
+
+  --footer: #141414;
+}
+
+body {
+  background: var(--bg);
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* PAGE */
+
+.cart-page {
+  width: 100%;
+  max-width: 760px;
+  min-height: 100vh;
+
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
+
+.topbar {
+  height: 78px;
+
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 0 24px;
+
+  border-bottom: 1px solid #1d1d1d;
+
+  flex-shrink: 0;
+}
+
+.topbar h1 {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.back-btn {
+  width: 42px;
+  height: 42px;
+
+  border: none;
+  background: transparent;
+
+  border-radius: 50%;
+
+  color: white;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.2s;
+}
+
+.back-btn:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+/* CONTAINER */
+
+.cart-container {
+  flex: 1;
+
+  padding: 20px 24px 140px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ITEM */
+
+.cart-item {
+  background: var(--card);
+
+  border: 1px solid var(--card-border);
+
+  border-radius: 18px;
+
+  padding: 14px;
+
+  display: flex;
+  gap: 14px;
+}
+
+.product-image {
+  width: 98px;
+  height: 98px;
+
+  object-fit: cover;
+
+  border-radius: 12px;
+
+  flex-shrink: 0;
+}
+
+.product-content {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.product-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 14px;
+}
+
+.product-header h2 {
+  font-size: 1.55rem;
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  margin-bottom: 10px;
+}
+
+.price {
+  color: var(--orange);
+
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+.delete-btn {
+  border: none;
+  background: transparent;
+
+  color: var(--danger);
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+}
+
+/* QUANTITY */
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.qty-btn {
+  width: 34px;
+  height: 34px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #2a2a2a;
+
+  color: white;
+
+  font-size: 1.3rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.qty-btn:hover {
+  background: #383838;
+}
+
+.quantity {
+  font-size: 1.1rem;
+  font-weight: 700;
+
+  min-width: 18px;
+  text-align: center;
+}
+
+/* FOOTER */
+
+.cart-footer {
+  background: var(--footer);
+
+  border-top: 1px solid #242424;
+
+  padding: 18px 24px 28px;
+
+  position: sticky;
+  bottom: 0;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+
+  color: #b0b0b0;
+
+  font-size: 1.1rem;
+
+  margin-bottom: 14px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+
+  background: #262626;
+
+  margin: 8px 0 14px;
+}
+
+.total {
+  color: white;
+
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+.total span:last-child {
+  color: var(--orange);
+}
+
+.checkout-btn {
+  width: 100%;
+  height: 64px;
+
+  border: none;
+  border-radius: 14px;
+
+  background-color:#f48116;
+
+  color: white;
+
+  font-size: 1.15rem;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  margin-top: 18px;
+
+  transition: 0.2s;
+}
+
+.checkout-btn:hover {
+  background-color: #ce6a0d;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 768px) {
+
+  .topbar {
+    padding: 0 16px;
+  }
+
+  .topbar h1 {
+    font-size: 1.7rem;
+  }
+
+  .cart-container {
+    padding: 18px 16px 130px;
+  }
+
+  .cart-footer {
+    padding: 18px 16px 24px;
+  }
+
+  .product-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .price {
+    font-size: 1.2rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  .cart-item {
+    padding: 12px;
+  }
+
+  .product-image {
+    width: 86px;
+    height: 86px;
+  }
+
+  .product-header h2 {
+    font-size: 1.05rem;
+  }
+
+  .price {
+    font-size: 1.05rem;
+  }
+
+  .qty-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .summary-row {
+    font-size: 1rem;
+  }
+
+  .total {
+    font-size: 1.3rem;
+  }
+
+}

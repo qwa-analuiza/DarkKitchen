@@ -1,0 +1,55 @@
+<div class="login-wrapper">
+  <div class="login-card">
+    
+    <div class="brand-header">
+      <div class="brand-icon">
+        <span>🔥</span>
+      </div>
+      <h2>Sabor na Brasa</h2>
+    </div>
+
+    <div class="form-title">
+      <h3>Acesso Administrativo</h3>
+      <p>Entre com suas credenciais</p>
+    </div>
+
+    <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+      
+      <div class="input-group">
+        <label>E-mail</label>
+        <input type="email" formControlName="email" placeholder="admin@sabornabrasa.com" />
+      </div>
+
+      <div class="input-group">
+        <label>Senha</label>
+        <input type="password" formControlName="password" placeholder="••••••••" />
+      </div>
+
+      <div class="form-actions">
+        <label class="remember-me">
+          <input type="checkbox" formControlName="remember" />
+          <span>Lembrar de mim</span>
+        </label>
+        
+<!-- MUDANÇA ENXUTA: Trocando o (click) pelo routerLink padrão do Angular -->
+      <a routerLink="/recuperar-senha" style="cursor: pointer;">Esqueci minha senha</a>
+      </div>
+
+      @if (errorMessage) {
+        <div class="alert alert-error">{{ errorMessage }}</div>
+      }
+      @if (successMessage) {
+        <div class="alert alert-success">{{ successMessage }}</div>
+      }
+
+      <button type="submit" class="btn-submit" [disabled]="isLoading">
+        @if (!isLoading) {
+          <span>Entrar</span>
+        } @else {
+          <span>Carregando...</span>
+        }
+      </button>
+
+    </form>
+  </div>
+</div>

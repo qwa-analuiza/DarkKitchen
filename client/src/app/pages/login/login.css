@@ -1,0 +1,290 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+
+  padding: 20px;
+}
+
+/* ==========================================
+   CONTAINER PRINCIPAL
+========================================== */
+
+.container {
+  width: 100%;
+  max-width: 420px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  margin: auto;
+}
+
+/* ==========================================
+   LINKS
+========================================== */
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.entrar {
+  text-decoration: none;
+  color: #000;
+}
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.logo-area {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.logo-icon {
+  width: 70px;
+  height: 70px;
+  background: #ff8c2a;
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 15px;
+}
+
+.logo-icon span {
+  color: #000;
+  font-size: 32px;
+}
+
+.logo-area h1 {
+  font-family: 'Oswald', sans-serif;
+  letter-spacing: 4px;
+  font-size: 26px;
+}
+
+.logo-area p {
+  color: #9a9a9a;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.card {
+  background: linear-gradient(145deg, #111, #0a0a0a);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  border-radius: 14px;
+
+  padding: 25px;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03);
+
+  width: 100%;
+}
+
+/* ==========================================
+   FORM
+========================================== */
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #ddd;
+}
+
+.card input {
+  width: 100%;
+  background-color: #0b0b0b;
+  color: #fff;
+
+  border-radius: 10px;
+
+  padding: 12px;
+
+  margin-bottom: 18px;
+
+  border: 1px solid #3a3a3a;
+
+  outline: none;
+
+  font-family: 'Inter', sans-serif;
+
+  transition: 0.25s ease;
+}
+
+.card input:focus {
+  border: 1px solid rgba(255, 140, 42, 0.4);
+  box-shadow: 0 0 0 1px rgba(255, 140, 42, 0.15);
+}
+
+/* Chrome Autofill */
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #0b0b0b inset !important;
+  -webkit-text-fill-color: #fff !important;
+}
+
+/* ==========================================
+   ESQUECI SENHA
+========================================== */
+
+.forgot {
+  color: #ff8c2a;
+  font-size: 14px;
+  text-decoration: none;
+  margin-bottom: 20px;
+}
+
+/* ==========================================
+   BOTÃO
+========================================== */
+
+button {
+  width: 100%;
+
+  background: #ff8c2a;
+
+  color: #000;
+
+  border: none;
+
+  padding: 14px;
+
+  border-radius: 8px;
+
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  margin-bottom: 15px;
+
+  transition: 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+/* ==========================================
+   TEXTO FINAL
+========================================== */
+
+.signup {
+  text-align: center;
+  font-size: 14px;
+  color: #9a9a9a;
+}
+
+.signup span {
+  color: #ff8c2a;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* ==========================================
+   TABLETS
+========================================== */
+
+@media (max-width: 768px) {
+  body {
+    padding: 24px;
+  }
+
+  .container {
+    max-width: 430px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 480px) {
+  body {
+    padding: 16px;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  .logo-icon {
+    width: 65px;
+    height: 65px;
+  }
+
+  .logo-area h1 {
+    font-size: 22px;
+    letter-spacing: 3px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .card input {
+    padding: 14px;
+  }
+
+  button {
+    padding: 15px;
+  }
+}
+
+/* ==========================================
+   MONITORES GRANDES
+========================================== */
+
+@media (min-width: 1400px) {
+  .container {
+    transform: scale(1.05);
+  }
+}
+
+:host {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}

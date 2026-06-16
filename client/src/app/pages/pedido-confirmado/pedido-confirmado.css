@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:host {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  padding: 40px 20px;
+}
+
+.success-container {
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Ícone de Check Superior */
+.success-icon-wrapper {
+  margin-bottom: 24px;
+}
+
+.success-check {
+  font-size: 80px;
+  color: #ff932f;
+}
+
+.success-title {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.success-subtitle {
+  font-size: 14px;
+  color: #8f8f8f;
+  font-weight: 500;
+  margin-bottom: 32px;
+}
+
+/* Card Principal de Status */
+.status-card {
+  width: 100%;
+  background: linear-gradient(145deg, #161616, #0f0f0f);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  margin-bottom: 32px;
+}
+
+.order-number-label {
+  font-size: 13px;
+  color: #8f8f8f;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.order-number {
+  font-size: 32px;
+  font-weight: 800;
+  color: #ff932f;
+}
+
+.card-divider {
+  width: 100%;
+  height: 1px;
+  background: #1c1c1e;
+  margin: 20px 0;
+}
+
+/* Linhas de Informações */
+.info-row {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.icon-accent {
+  color: #ff932f;
+  font-size: 22px;
+  margin-top: 1px;
+}
+
+.info-text h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+
+.info-text p {
+  font-size: 13px;
+  color: #a0a0a0;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* Bloco de Progresso do Status */
+.progress-box {
+  width: 100%;
+  background: #151517;
+  border-radius: 12px;
+  padding: 20px;
+  text-align: left;
+  margin-top: 8px;
+}
+
+.progress-box h3 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.status-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Estados da lista de progresso */
+.status-item.active {
+  color: #fff;
+}
+
+.status-item.active .status-dot {
+  background: #ff932f;
+  box-shadow: 0 0 8px #ff932f;
+}
+
+.status-item.disabled {
+  color: #636366;
+}
+
+.status-item.disabled .status-dot {
+  background: #3a3a3c;
+}
+
+/* Grupo de Botões Inferiores */
+.actions-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.button-primary {
+  width: 100%;
+  height: 54px;
+  background: #ff932f;
+  color: #000;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: opacity 0.2s;
+}
+
+.button-secondary {
+  width: 100%;
+  height: 54px;
+  background: #1c1c1e;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.2s;
+}
+
+.button-primary:hover, .button-secondary:hover {
+  opacity: 0.9;
+}

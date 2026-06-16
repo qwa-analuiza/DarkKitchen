@@ -1,0 +1,57 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="logo">
+      <span class="logo-box">🔥</span>
+      <div class="logo-text">
+        <h2>Sabor na Brasa</h2>
+        <p>Painel Admin</p>
+      </div>
+    </div>
+  </div>
+  
+  <nav class="sidebar-nav sidebar-nav-top">
+    <a (click)="router.navigate(['/dashboard'])" [class.active]="router.url === '/dashboard'" class="nav-item">
+      <span class="nav-icon">📊</span><span>Dashboard</span>
+    </a>
+    <a (click)="router.navigate(['/cozinha'])" [class.active]="router.url === '/cozinha'" class="nav-item">
+      <span class="nav-icon">👨‍🍳</span><span>Cozinha</span>
+    </a>
+    <a (click)="router.navigate(['/pedidos'])" [class.active]="router.url === '/pedidos'" class="nav-item">
+      <span class="nav-icon">🛍️</span><span>Pedidos</span>
+    </a>
+    <a (click)="router.navigate(['/cardapio'])" [class.active]="router.url === '/cardapio'" class="nav-item">
+      <span class="nav-icon">📜</span><span>Cardápio</span>
+    </a>
+    <a (click)="router.navigate(['/entregas'])" [class.active]="router.url === '/entregas'" class="nav-item">
+      <span class="nav-icon">🛵</span><span>Entregas</span>
+    </a>
+    <a (click)="router.navigate(['/administracao'])" [class.active]="router.url === '/administracao'" class="nav-item">
+      <span class="nav-icon">📈</span><span>Administração</span>
+    </a>
+  </nav>
+
+  <nav class="sidebar-nav sidebar-nav-bottom">
+    <a (click)="router.navigate(['/configuracoes'])" [class.active]="router.url === '/configuracoes'" class="nav-item">
+      <span class="nav-icon">⚙️</span><span>Configurações</span>
+    </a>
+    <a (click)="abrirModalLogout()" class="nav-item link-logout">
+      <span class="nav-icon">🚪</span><span>Sair</span>
+    </a>
+  </nav>
+</aside>
+
+@if (modalLogoutAberto) {
+  <div class="cozinha-overlay-box overlay-logout animate-fade">
+    <div class="cozinha-modal-wrapper modal-logout-box">
+      <div class="logout-header">
+        <span class="logout-alert-icon">🚪</span>
+        <h2>Tem certeza que deseja sair?</h2>
+        <p>Você precisará inserir suas credenciais para acessar o painel administrativo novamente.</p>
+      </div>
+      <div class="logout-actions-row">
+        <button class="cozinha-btn-action btn-gray-cancel" (click)="fecharModalLogout()">Não, Voltar</button>
+        <button class="cozinha-btn-action btn-red-confirm" (click)="confirmarSair()">Sim, Sair</button>
+      </div>
+    </div>
+  </div>
+}

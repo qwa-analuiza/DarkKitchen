@@ -1,0 +1,42 @@
+<div class="container">
+
+  <!-- Voltar -->
+<div class="back">
+  <a class="back-link" routerLink="/">
+    Voltar
+  </a>
+</div>
+
+  <!-- Logo -->
+  <div class="logo-area">
+
+    <div class="logo-icon">
+      <span class="material-icons">local_fire_department</span>
+    </div>
+
+    <h1>Recuperar Senha</h1>
+    <p class="subtitle">Enviaremos um link de recuperação</p>
+
+    <!-- Card -->
+    <div class="card">
+
+      <label>Email cadastrado</label>
+
+      <input
+        type="email"
+        placeholder="seu@email.com"
+        [(ngModel)]="email"
+        name="email"
+      >
+
+      <button
+        type="button"
+        (click)="enviarReset()"
+      >
+        Enviar link de recuperação
+      </button>
+
+    </div>
+
+  </div>
+</div>

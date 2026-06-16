@@ -1,0 +1,36 @@
+<div class="auth-page-root">
+  <div class="auth-card-container animate-fade">
+    
+    <div class="auth-card-header">
+      <div class="logo-badge">🔥</div>
+      <h2>Recuperar Senha</h2>
+      <p>Insira o e-mail cadastrado na sua conta para receber as instruções de redefinição.</p>
+    </div>
+
+    <form (ngSubmit)="enviarInstrucoes()" class="auth-form">
+      <div class="form-group">
+        <label for="email">E-mail de Login</label>
+        <div class="input-wrapper">
+          <span class="input-icon">✉️</span>
+          <input 
+            type="email" 
+            id="email" 
+            name="emailLogin" 
+            [(ngModel)]="emailLogin" 
+            placeholder="Ex: administrador@sabornabrasa.com" 
+            required
+          >
+        </div>
+      </div>
+
+      <button type="submit" class="btn-auth-submit">Enviar Instruções</button>
+      
+      <div class="auth-card-footer">
+        <a (click)="router.navigate(['/login'])" class="link-back-login">
+          ← Voltar para o Login
+        </a>
+      </div>
+    </form>
+
+  </div>
+</div>

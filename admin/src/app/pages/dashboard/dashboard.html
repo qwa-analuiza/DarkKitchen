@@ -1,0 +1,148 @@
+<div class="dashboard-container">
+  
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="logo">
+        <span class="logo-box">🔥</span>
+        <div class="logo-text">
+          <h2>Sabor na Brasa</h2>
+          <p>Painel Admin</p>
+        </div>
+      </div>
+    </div>
+    
+    <nav class="sidebar-nav sidebar-nav-top">
+      <a (click)="router.navigate(['/dashboard'])" [class.active]="router.url === '/dashboard'" class="nav-item">
+        <span class="nav-icon">📊</span><span>Dashboard</span>
+      </a>
+      <a (click)="router.navigate(['/cozinha'])" [class.active]="router.url === '/cozinha'" class="nav-item">
+        <span class="nav-icon">👨‍🍳</span><span>Cozinha</span>
+      </a>
+      <a (click)="router.navigate(['/pedidos'])" [class.active]="router.url === '/pedidos'" class="nav-item">
+        <span class="nav-icon">🛍️</span><span>Pedidos</span>
+      </a>
+      <a (click)="router.navigate(['/cardapio'])" [class.active]="router.url === '/cardapio'" class="nav-item">
+        <span class="nav-icon">📜</span><span>Cardápio</span>
+      </a>
+      <a (click)="router.navigate(['/entregas'])" [class.active]="router.url === '/entregas'" class="nav-item">
+        <span class="nav-icon">🛵</span><span>Entregas</span>
+      </a>
+      <a (click)="router.navigate(['/administracao'])" [class.active]="router.url === '/administracao'" class="nav-item">
+        <span class="nav-icon">📈</span><span>Administração</span>
+      </a>
+    </nav>
+
+    <nav class="sidebar-nav sidebar-nav-bottom">
+      <a (click)="router.navigate(['/configuracoes'])" [class.active]="router.url === '/configuracoes'" class="nav-item">
+        <span class="nav-icon">⚙️</span><span>Configurações</span>
+      </a>
+      <a (click)="router.navigate(['/'])" class="nav-item link-logout">
+        <span class="nav-icon">🚪</span><span>Sair</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1>Dashboard</h1>
+      <p>Visão geral da operação - Sabor na Brasa</p>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card border-yellow">
+        <div class="metric-body">
+          <span class="metric-label">Pedidos Ativos</span>
+          <span class="metric-value">{{ pedidosAtivos }}</span>
+          <span class="metric-sub yellow-text">Pedidos ainda não entregues</span>
+        </div>
+        <div class="metric-badge-icon yellow-bg">🕒</div>
+      </div>
+
+      <div class="metric-card border-green">
+        <div class="metric-body">
+          <span class="metric-label">Em Preparo</span>
+          <span class="metric-value">{{ emPreparo }}</span>
+          <span class="metric-sub">Pedidos sendo preparados</span>
+        </div>
+        <div class="metric-badge-icon green-bg">👨‍🍳</div>
+      </div>
+
+      <div class="metric-card border-orange">
+        <div class="metric-body">
+          <span class="metric-label">Em Entrega</span>
+          <span class="metric-value">{{ emEntrega }}</span>
+          <span class="metric-sub">{{ motoboysDisponiveis }} motoboys disponíveis</span>
+        </div>
+        <div class="metric-badge-icon orange-bg">🛵</div>
+      </div>
+
+      <div class="metric-card border-red">
+        <div class="metric-body">
+          <span class="metric-label">Alertas</span>
+          <span class="metric-value">{{ pedidosAtraso }}</span>
+          <span class="metric-sub red-text">Pedidos em atraso</span>
+        </div>
+        <div class="metric-badge-icon red-bg">!</div>
+      </div>
+    </div>
+
+    <div class="dashboard-split-layout">
+      <section class="content-block">
+        <div class="block-header">
+          <h3>Atividade Recente</h3>
+          <span class="pill-badge">Tempo Real</span>
+        </div>
+        
+        <div class="activity-timeline">
+          @for (atividade of atividades; track atividade.descricao) {
+          <div class="timeline-row">
+            <div class="timeline-icon-wrapper yellow-border">🕒</div>
+            <div class="timeline-data">
+              <h4>{{ atividade.titulo }}</h4>
+              <p>{{ atividade.descricao }}</p>
+            </div>
+            <span class="timeline-time">{{ atividade.minutos }} min</span>
+          </div>
+          }
+        </div>
+      </section>
+
+      <div class="vertical-blocks-stack">
+        <section class="content-block">
+          <h3>Status da Operação</h3>
+          
+          <div class="operation-metric">
+            <div class="metric-header-row">
+              <span>Capacidade da Cozinha</span>
+              <span class="yellow-text">{{ emPreparo }}</span>
+            </div>
+            <span class="metric-caption">{{ emPreparo }} pedidos em preparo agora</span>
+          </div>
+
+          <div class="operation-metric">
+            <div class="metric-header-row">
+              <span>Motoboys Ativos</span>
+              <span class="green-text">{{ motoboysDisponiveis }}</span>
+            </div>
+            <span class="metric-caption">{{ motoboysDisponiveis }} de {{ totalMotoboys }} motoboys disponíveis</span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+  @if (modalLogoutAberto) {
+    <div class="cozinha-overlay-box overlay-logout animate-fade">
+      <div class="cozinha-modal-wrapper modal-logout-box">
+        <div class="logout-header">
+          <span class="logout-alert-icon">🚪</span>
+          <h2>Tem certeza que deseja sair?</h2>
+          <p>Você precisará inserir suas credenciais para acessar o painel administrativo novamente.</p>
+        </div>
+        <div class="logout-actions-row">
+          <button class="cozinha-btn-action btn-gray-cancel" (click)="fecharModalLogout()">Não, Voltar</button>
+          <button class="cozinha-btn-action btn-red-confirm" (click)="confirmarSair()">Sim, Sair</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

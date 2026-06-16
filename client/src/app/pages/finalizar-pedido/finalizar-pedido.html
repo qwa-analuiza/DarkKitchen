@@ -1,0 +1,117 @@
+<main class="container">
+  <header class="back" (click)="voltar()">
+    <span class="material-icons">arrow_back</span>
+    <span class="back-link">Finalizar pedido</span>
+  </header>
+
+  <div class="card space-between-card">
+    <div class="card-content-with-icon">
+      <span class="material-icons icon-accent">location_on</span>
+      <div class="text-block">
+        <h3>Endereço de entrega</h3>
+        <p class="main-text">
+          {{ endereco.rua }}, {{ endereco.numero }} - {{ endereco.bairro }}
+        </p>
+        <button type="button" class="text-button" (click)="abrirModalEndereco()">Alterar endereço</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content-with-icon">
+      <span class="material-icons icon-accent">access_time</span>
+      <div class="text-block">
+        <h3>Tempo estimado</h3>
+        <p class="main-text">35-45 minutos</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card order-summary-card">
+    <h2>Resumo do pedido</h2>
+    
+    <div class="summary-list">
+      <div class="summary-item" *ngFor="let item of itensPedido">
+        <div class="item-left">
+          <span class="item-title">{{ item.quantidade }}x {{ item.nome }}</span>
+          <span class="item-subtext">R$ {{ item.precoUnitario | number:'1.2-2' }} cada</span>
+        </div>
+        <span class="item-total-price">R$ {{ (item.precoUnitario * item.quantidade) | number:'1.2-2' }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-content-with-icon">
+      <span class="material-icons icon-accent">payments</span>
+      <div class="text-block">
+        <h3>Forma de pagamento</h3>
+        <p class="main-text">{{ formaPagamentoTexto }}</p>
+        <button type="button" class="text-button" (click)="voltar()">Alterar pagamento</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Observações</h2>
+    <div class="input-group no-margin">
+      <textarea 
+        id="observacoes" 
+        placeholder="Alguma observação sobre o pedido?" 
+        [(ngModel)]="observacoesPedido"
+        rows="3">
+      </textarea>
+    </div>
+  </div>
+
+  <footer class="order-footer">
+    <div class="footer-inner">
+      <div class="price-row line-item">
+        <span class="price-label">Subtotal</span>
+        <span class="price-value">R$ {{ subtotal | number:'1.2-2' }}</span>
+      </div>
+      
+      <div class="price-row line-item divider-bottom">
+        <span class="price-label">Taxa de entrega</span>
+        <span class="price-value">R$ {{ taxaEntrega | number:'1.2-2' }}</span>
+      </div>
+
+      <div class="price-row total-row">
+        <span class="total-label">Total</span>
+        <span class="total-price">R$ {{ (subtotal + taxaEntrega) | number:'1.2-2' }}</span>
+      </div>
+
+      <button   class="submit-order-button"  (click)="finalizarPedido()">Finalizar Pedido</button>
+    </div>
+  </footer>
+</main>
+
+<dialog id="modalEndereco" class="modal-dialog">
+  <div class="modal-header">
+    <h2>Editar endereço</h2>
+    <span class="material-icons close-icon" (click)="fecharModalEndereco()">close</span>
+  </div>
+
+  <div class="modal-body">
+    <div class="input-container">
+      <label for="modalRua">Rua</label>
+      <input type="text" id="modalRua" placeholder="Nome da rua" [(ngModel)]="enderecoEdicao.rua">
+    </div>
+
+    <div class="input-row">
+      <div class="input-container flex-1">
+        <label for="modalNumero">Número</label>
+        <input type="text" id="modalNumero" placeholder="Ex: 123" [(ngModel)]="enderecoEdicao.numero">
+      </div>
+      
+      <div class="input-container flex-1">
+        <label for="modalBairro">Bairro</label>
+        <input type="text" id="modalBairro" placeholder="Bairro" [(ngModel)]="enderecoEdicao.bairro">
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="save-button" (click)="salvarNovoEndereco()">Salvar Endereço</button>
+  </div>
+</dialog>

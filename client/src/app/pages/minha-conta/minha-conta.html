@@ -1,0 +1,187 @@
+<main class="page">
+
+  <header class="topbar">
+    <a routerLink="/inicio" class="back-btn">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2.2"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+      </svg>
+    </a>
+    <h1>Minha Conta</h1>
+  </header>
+
+  <div class="container">
+
+    <section class="card">
+
+      <div class="profile">
+        <div class="avatar">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="42"
+            height="42"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 20.118a7.5 7.5 0 0115 0" />
+          </svg>
+        </div>
+
+        <div class="profile-info">
+          <h2>{{ usuario?.nome || 'Carregando...' }}</h2>
+          <p>{{ usuario?.email || '...' }}</p>
+        </div>
+      </div>
+
+      <div class="menu">
+        <button class="menu-item" (click)="abrirModalEndereco()">
+          <div class="menu-left">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21s-6-4.35-6-10a6 6 0 1112 0c0 5.65-6 10-6 10z" />
+              <circle cx="12" cy="11" r="2.2" />
+            </svg>
+            <span>Endereços salvos</span>
+          </div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+
+      </div>
+    </section>
+
+    <section class="card pedidos-card-container">
+      <div class="section-title">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l4 2m6-2a10 10 0 11-20 0 10 10 0 0120 0z" />
+        </svg>
+        <h3>Histórico de pedidos</h3>
+      </div>
+
+      <div class="pedidos-list">
+        <div 
+          class="pedido-item-box" 
+          *ngFor="let pedido of pedidos"
+          (click)="irParaRastreamento(pedido)"
+          [class.clicavel]="pedido.estaEmAndamento"
+        >
+          <div class="pedido-header">
+            <span class="pedido-id">#{{ pedido.id }}</span>
+            <span class="pedido-status" [ngClass]="pedido.estaEmAndamento ? 'status-andamento' : 'status-entregue'">
+              {{ pedido.status }}
+            </span>
+          </div>
+          
+          <div class="pedido-body">
+            <span class="pedido-data">{{ pedido.data }}</span>
+          </div>
+
+          <div class="pedido-footer">
+            <span class="pedido-itens">{{ pedido.totalItens }} itens</span>
+            <span class="pedido-total">
+              R$ {{ pedido.total | number:'1.2-2' }}
+              <svg 
+                *ngIf="pedido.estaEmAndamento"
+                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" class="icon-box-svg"
+              >
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="sem-pedidos" *ngIf="pedidos.length === 0">
+          <p>Você não realizou nenhum pedido ainda.</p>
+        </div>
+      </div>
+    </section>
+
+    <button (click)="logout()" class="logout-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-7.5a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 006 21h7.5a2.25 2.25 0 002.25-2.25V15" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H9m0 0l3-3m-3 3l3 3" />
+      </svg>
+      Sair da conta
+    </button>
+
+  </div>
+
+  <div class="modal-overlay" *ngIf="showModalDados">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Editar Dados Pessoais</h2>
+        <button class="close-modal" (click)="showModalDados = false">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group">
+          <label>Nome Completo</label>
+          <input type="text" [(ngModel)]="tempUsuario.nome" placeholder="Seu nome">
+        </div>
+        <div class="input-group">
+          <label>E-mail (Apenas visualização)</label>
+          <input type="email" [value]="usuario.email" disabled class="input-disabled">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancelar" (click)="showModalDados = false">Cancelar</button>
+        <button class="btn-salvar" (click)="salvarDadosPessoais()">Salvar Alterações</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" *ngIf="showModalEndereco">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Editar Endereço de Entrega</h2>
+        <button class="close-modal" (click)="showModalEndereco = false">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="input-row">
+          <div class="input-group flex-3">
+            <label>Rua / Logradouro</label>
+            <input type="text" [(ngModel)]="tempEndereco.rua" placeholder="Ex: Rua das Flores">
+          </div>
+          <div class="input-group flex-1">
+            <label>Nº</label>
+            <input type="text" [(ngModel)]="tempEndereco.numero" placeholder="123">
+          </div>
+        </div>
+        <div class="input-group">
+          <label>Bairro</label>
+          <input type="text" [(ngModel)]="tempEndereco.bairro" placeholder="Ex: Centro">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancelar" (click)="showModalEndereco = false">Cancelar</button>
+        <button class="btn-salvar" (click)="salvarEndereco()">Salvar Endereço</button>
+      </div>
+    </div>
+  </div>
+
+</main>

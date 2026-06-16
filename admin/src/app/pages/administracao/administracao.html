@@ -1,0 +1,197 @@
+<aside class="cozinha-sidebar-left">
+  <!-- Topo da Sidebar: Logo -->
+  <div class="cozinha-sidebar-brand">
+    <div class="cozinha-brand-wrapper">
+      <span class="cozinha-brand-icon-box">🔥</span>
+      <div class="cozinha-brand-text">
+        <h2>Sabor na Brasa</h2>
+        <p>Painel Admin</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Menu Superior: Navegação Principal com ativação de cor dinâmica -->
+  <nav class="cozinha-sidebar-menu cozinha-sidebar-menu-top">
+    <a (click)="router.navigate(['/dashboard'])" [class.active-link]="router.url === '/dashboard'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">📊</span><span>Dashboard</span>
+    </a>
+    <a (click)="router.navigate(['/cozinha'])" [class.active-link]="router.url === '/cozinha'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">👨‍🍳</span><span>Cozinha</span>
+    </a>
+    <a (click)="router.navigate(['/pedidos'])" [class.active-link]="router.url === '/pedidos'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">🛍️</span><span>Pedidos</span>
+    </a>
+    <a (click)="router.navigate(['/cardapio'])" [class.active-link]="router.url === '/cardapio'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">📜</span><span>Cardápio</span>
+    </a>
+    <a (click)="router.navigate(['/entregas'])" [class.active-link]="router.url === '/entregas'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">🛵</span><span>Entregas</span>
+    </a>
+    <a (click)="router.navigate(['/administracao'])" [class.active-link]="router.url === '/administracao'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">📈</span><span>Administração</span>
+    </a>
+  </nav>
+
+  <!-- Menu Inferior: Configurações e Sair no Canto Inferior Esquerdo -->
+  <nav class="cozinha-sidebar-menu cozinha-sidebar-menu-bottom">
+    <a (click)="router.navigate(['/configuracoes'])" [class.active-link]="router.url === '/configuracoes'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">⚙️</span><span>Configurações</span>
+    </a>
+    <a (click)="router.navigate(['/'])" class="cozinha-menu-link link-logout">
+      <span class="cozinha-link-icon">🚪</span><span>Sair</span>
+    </a>
+  </nav>
+</aside>
+
+  <main class="cozinha-main-workspace">
+    <header class="cozinha-workspace-header flex-header-back">
+      <button class="btn-delivery-action btn-dark-action" (click)="voltar()">← Voltar</button>
+      <div class="header-titles-group">
+        <h1>Painel Administrativo</h1>
+        <p>Visão gerencial e análise de desempenho</p>
+      </div>
+    </header>
+
+    <div class="adm-metrics-top-grid">
+      <div class="adm-mini-card">
+        <div class="adm-card-meta">
+          <span class="adm-card-label">Faturamento Hoje</span>
+          <span class="card-icon-tag">$</span>
+        </div>
+        <div class="adm-card-value">R$ {{ faturamentoHoje | number:'1.2-2' }}</div>
+        <span class="adm-card-trend">Pedidos entregues</span>
+      </div>
+
+      <div class="adm-mini-card highlight-border-gold">
+        <div class="adm-card-meta">
+          <span class="adm-card-label">Total de Pedidos</span>
+          <span class="card-icon-tag bg-box-icon">📥</span>
+        </div>
+        <div class="adm-card-value">{{ totalPedidos }}</div>
+        <span class="adm-card-trend">Dados em tempo real</span>
+      </div>
+
+      <div class="adm-mini-card">
+        <div class="adm-card-meta">
+          <span class="adm-card-label">Ticket Médio</span>
+          <span class="card-icon-tag">$</span>
+        </div>
+        <div class="adm-card-value">R$ {{ ticketMedio | number:'1.2-2' }}</div>
+        <span class="adm-card-trend">Pedidos entregues</span>
+      </div>
+
+      <div class="adm-mini-card">
+        <div class="adm-card-meta">
+          <span class="adm-card-label">Pedidos em Atraso</span>
+          <span class="card-icon-tag text-red-alert">⚠️</span>
+        </div>
+        <div class="adm-card-value text-red-value">{{ pedidosAtraso }}</div>
+        <span class="adm-card-trend trend-danger">Requer atenção</span>
+      </div>
+
+      <div class="adm-mini-card">
+        <div class="adm-card-meta">
+          <span class="adm-card-label">Tempo Médio</span>
+          <span class="card-icon-tag">🕒</span>
+        </div>
+        <div class="adm-card-value">{{ tempoMedio }} min</div>
+        <span class="adm-card-trend">Desde a criação até agora</span>
+      </div>
+    </div>
+
+    <div class="adm-charts-split-row">
+      
+      <div class="adm-chart-container-box">
+        <h3>Vendas da Semana</h3>
+        <div class="native-bar-chart-wrapper">
+          <div class="chart-y-axis">
+            <span>8000</span><span>6000</span><span>4000</span><span>2000</span><span>0</span>
+          </div>
+          <div class="chart-bars-container">
+            @for (barra of vendasSemanaLayout; track barra.dia) {
+              <div class="bar-column-item">
+                <div class="bar-fill-track">
+                  <div class="bar-actual-fill" [style.height.%]="(barra.valor / 8000) * 100"></div>
+                </div>
+                <span class="bar-label-day">{{ barra.dia }}</span>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <div class="adm-chart-container-box">
+        <h3>Status dos Pedidos</h3>
+        <div class="native-pie-chart-wrapper">
+          <div class="svg-pie-wrapper">
+            <svg viewBox="0 0 32 32" class="pie-svg-element">
+              <circle r="16" cx="16" cy="16" class="pie-slice slice-green" 
+                      [style.stroke-dasharray]="pctEntregue + ' 100'" style="stroke-dashoffset: 0;"></circle>
+              <circle r="16" cx="16" cy="16" class="pie-slice slice-yellow" 
+                      [style.stroke-dasharray]="pctPreparo + ' 100'" [style.stroke-dashoffset]="offsetPreparo"></circle>
+              <circle r="16" cx="16" cy="16" class="pie-slice slice-orange" 
+                      [style.stroke-dasharray]="pctAguardando + ' 100'" [style.stroke-dashoffset]="offsetAguardando"></circle>
+              <circle r="16" cx="16" cy="16" class="pie-slice slice-dark" 
+                      [style.stroke-dasharray]="pctEntrega + ' 100'" [style.stroke-dashoffset]="offsetEntrega"></circle>
+            </svg>
+          </div>
+          
+          <div class="pie-custom-legends">
+            <div class="legend-item"><span class="dot green"></span> <span class="txt-g">Entregue: {{ pctEntregue | number:'1.0-0' }}%</span></div>
+            <div class="legend-item"><span class="dot yellow"></span> <span class="txt-y">Em Preparo: {{ pctPreparo | number:'1.0-0' }}%</span></div>
+            <div class="legend-item"><span class="dot orange"></span> <span class="txt-o">Aguardando: {{ pctAguardando | number:'1.0-0' }}%</span></div>
+            <div class="legend-item"><span class="dot dark"></span> <span class="txt-d">Em Entrega: {{ pctEntrega | number:'1.0-0' }}%</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <section class="adm-ranking-table-block">
+      <h3>Itens Mais Vendidos</h3>
+      <div class="adm-custom-table-wrapper">
+        <div class="table-header-row">
+          <span class="col-pos">Posição</span>
+          <span class="col-prod">Produto</span>
+          <span class="col-sales">Vendas</span>
+          <span class="col-rev">Receita</span>
+          <span class="col-perf">Performance</span>
+        </div>
+
+        <div class="table-body-rows">
+          @for (item of produtosMaisVendidos; track item.posicao) {
+            <div class="table-data-row-item">
+              <div class="col-pos">
+                <span class="rank-badge" [class.rank-first]="item.posicao === 1" [class.rank-second]="item.posicao === 2">
+                  {{ item.posicao }}
+                </span>
+              </div>
+              <span class="col-prod font-bold-white">{{ item.produto }}</span>
+              <span class="col-sales">{{ item.vendas }} unidades</span>
+              <span class="col-rev">R$ {{ item.receita | number:'1.2-2' }}</span>
+              <div class="col-perf">
+                <div class="progress-track-bar">
+                  <div class="progress-fill-gold" [style.width.%]="item.performance"></div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+  @if (modalLogoutAberto) {
+    <div class="cozinha-overlay-box overlay-logout animate-fade">
+      <div class="cozinha-modal-wrapper modal-logout-box">
+        <div class="logout-header">
+          <span class="logout-alert-icon">🚪</span>
+          <h2>Tem certeza que deseja sair?</h2>
+          <p>Você precisará inserir suas credenciais para acessar o painel administrativo novamente.</p>
+        </div>
+        <div class="logout-actions-row">
+          <button class="cozinha-btn-action btn-gray-cancel" (click)="fecharModalLogout()">Não, Voltar</button>
+          <button class="cozinha-btn-action btn-red-confirm" (click)="confirmarSair()">Sim, Sair</button>
+        </div>
+      </div>
+    </div>
+  }

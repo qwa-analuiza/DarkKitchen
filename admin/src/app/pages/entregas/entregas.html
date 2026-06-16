@@ -1,0 +1,192 @@
+<aside class="cozinha-sidebar-left">
+  <div class="cozinha-sidebar-brand">
+    <div class="cozinha-brand-wrapper">
+      <span class="cozinha-brand-icon-box">🔥</span>
+      <div class="cozinha-brand-text">
+        <h2>Sabor na Brasa</h2>
+        <p>Painel Admin</p>
+      </div>
+    </div>
+  </div>
+  
+  <nav class="cozinha-sidebar-menu cozinha-sidebar-menu-top">
+    <a (click)="router.navigate(['/dashboard'])" [class.active-link]="router.url === '/dashboard'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">📊</span><span>Dashboard</span>
+    </a>
+    <a (click)="router.navigate(['/cozinha'])" [class.active-link]="router.url === '/cozinha'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">👨‍🍳</span><span>Cozinha</span>
+    </a>
+    <a (click)="router.navigate(['/pedidos'])" [class.active-link]="router.url === '/pedidos'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">🛍️</span><span>Pedidos</span>
+    </a>
+    <a (click)="router.navigate(['/cardapio'])" [class.active-link]="router.url === '/cardapio'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">📜</span><span>Cardápio</span>
+    </a>
+    <a (click)="router.navigate(['/entregas'])" [class.active-link]="router.url === '/entregas'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">🛵</span><span>Entregas</span>
+    </a>
+    <a (click)="router.navigate(['/administracao'])" [class.active-link]="router.url === '/administracao'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">📈</span><span>Administração</span>
+    </a>
+  </nav>
+
+  <nav class="cozinha-sidebar-menu cozinha-sidebar-menu-bottom">
+    <a (click)="router.navigate(['/configuracoes'])" [class.active-link]="router.url === '/configuracoes'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">⚙️</span><span>Configurações</span>
+    </a>
+    <a (click)="router.navigate(['/'])" class="cozinha-menu-link link-logout">
+      <span class="cozinha-link-icon">🚪</span><span>Sair</span>
+    </a>
+  </nav>
+</aside>
+
+  <main class="cozinha-main-workspace">
+    <header class="cozinha-workspace-header">
+      <h1>Gestão da Entregas</h1>
+      <p>Acompanhe motoboys e entregas em andamento</p>
+    </header>
+
+    <div class="entregas-split-grid">
+      <section class="entregas-column-section">
+        <div class="section-title-row">
+          <h2>Motoboys</h2>
+        </div>
+        <div class="motoboys-cards-stack">
+          @for (motoboy of motoboys; track motoboy.id) {
+            <div class="motoboy-display-card">
+              <div class="motoboy-main-info-row">
+                <div class="motoboy-avatar-circle">👤</div>
+                <div class="motoboy-meta-data">
+                  <h3>{{ motoboy.nome }}</h3>
+                  <span class="motoboy-phone-text">📞 {{ motoboy.telefone }}</span>
+                  <div class="motoboy-rating-row">
+                    <span class="star-rating">⭐ {{ motoboy.avaliacao }}</span>
+                    <span class="total-deliveries">{{ motoboy.entregas }} entregas</span>
+                  </div>
+                </div>
+                <span class="motoboy-status-badge" 
+                      [class.badge-available]="motoboy.status === 'disponivel'"
+                      [class.badge-busy]="motoboy.status === 'em_entrega'">
+                  {{ motoboy.status === 'disponivel' ? 'Disponível' : 'Em Entrega' }}
+                </span>
+              </div>
+
+              @if (motoboy.status === 'em_entrega' && motoboy.pedidoVinculado) {
+                <div class="motoboy-active-delivery-box">
+                  <span class="delivery-order-tag">📍 Pedido {{ motoboy.pedidoVinculado.numero }}</span>
+                  <p class="delivery-customer-name">{{ motoboy.pedidoVinculado.cliente }}</p>
+                </div>
+              }
+
+              <div class="motoboy-card-actions-wrapper">
+                @if (motoboy.status === 'disponivel') {
+                  <button class="btn-delivery-action btn-yellow-action" (click)="abrirJanelaAtribuir(motoboy)">
+                    Atribuir Pedido
+                  </button>
+                } @else {
+                  <button class="btn-delivery-action btn-gray-outline">
+                    Ver Localização
+                  </button>
+                  <button class="btn-delivery-action btn-green-action" (click)="marcarEntregaComoConcluida(motoboy)">
+                    Entregue
+                  </button>
+                }
+                <button class="btn-delivery-action btn-dark-action" (click)="verDetalhesMotoboy(motoboy)">
+                  Detalhes
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+
+      <div class="entregas-right-vertical-stack">
+        <section class="entregas-column-section">
+          <div class="section-title-row">
+            <h2>Aguardando Retirada</h2>
+          </div>
+          <div class="waiting-orders-stack">
+            @for (pedido of pedidosAguardandoRetirada; track pedido.id) {
+              <div class="waiting-order-card">
+                <div class="waiting-card-header">
+                  <span class="waiting-order-id">{{ pedido.numero }}</span>
+                  <span class="waiting-timer-tag">🕒 {{ minutosDesde(pedido) }} min</span>
+                </div>
+                <div class="waiting-card-body">
+                  <h4>{{ pedido.cliente }}</h4>
+                  <p class="waiting-address-text">📍 {{ pedido.endereco }}</p>
+                </div>
+                <div class="waiting-card-footer">
+                  <span class="waiting-price-tag">R$ {{ pedido.valorTotal | number:'1.2-2' }}</span>
+                  <button class="btn-action-atribuir-motoboy" (click)="abrirJanelaAtribuirDoPedido(pedido)">
+                    Atribuir Motoboy
+                  </button>
+                </div>
+              </div>
+            } @empty {
+              <div class="empty-section-msg">Nenhum pedido aguardando retirada da cozinha.</div>
+            }
+          </div>
+        </section>
+
+        <section class="entregas-column-section">
+          <div class="section-title-row">
+            <h2>Histórico de Entregas</h2>
+          </div>
+          <div class="quick-history-list">
+            @for (item of historicoEntregas; track item.id) {
+              <div class="quick-history-row">
+                <div class="history-left-meta">
+                  <span class="history-order-number-tag">{{ item.numero }}</span>
+                  <span class="history-rider-name">{{ item.motoboyNome }}</span>
+                </div>
+                <div class="history-right-meta">
+                  <span class="history-status-pill-done">Entregue</span>
+                  <span class="history-duration-text">{{ item.tempo }} min</span>
+                </div>
+              </div>
+            }
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  @if (modalAtribuicaoAberto && motoboySelecionado) {
+    <div class="cozinha-overlay-box">
+      <div class="cozinha-modal-wrapper small-modal">
+        <div class="cozinha-modal-title-row">
+          <h2>Atribuir Pedido para {{ motoboySelecionado.nome }}</h2>
+          <button class="cozinha-modal-close-trigger" (click)="fecharJanelaAtribuir()">×</button>
+        </div>
+        <div class="cozinha-modal-scroller">
+          <p class="modal-instruction-text">Selecione um pedido pronto para despachar:</p>
+          <div class="modal-orders-selection-list">
+            @for (pedido of pedidosAguardandoRetirada; track pedido.id) {
+              <div class="modal-order-selection-row" (click)="vincularPedidoAoMotoboy(motoboySelecionado.id, pedido.id)">
+                <strong>{{ pedido.numero }}</strong>
+                <span>{{ pedido.cliente }} • R$ {{ pedido.valorTotal | number:'1.2-2' }}</span>
+              </div>
+            } @empty {
+              <div class="empty-section-msg">Nenhum pedido pronto para ser atribuído.</div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+  @if (modalLogoutAberto) {
+    <div class="cozinha-overlay-box overlay-logout animate-fade">
+      <div class="cozinha-modal-wrapper modal-logout-box">
+        <div class="logout-header">
+          <span class="logout-alert-icon">🚪</span>
+          <h2>Tem certeza que deseja sair?</h2>
+          <p>Você precisará inserir suas credenciais para acessar o painel administrativo novamente.</p>
+        </div>
+        <div class="logout-actions-row">
+          <button class="cozinha-btn-action btn-gray-cancel" (click)="fecharModalLogout()">Não, Voltar</button>
+          <button class="cozinha-btn-action btn-red-confirm" (click)="confirmarSair()">Sim, Sair</button>
+        </div>
+      </div>
+    </div>
+  }

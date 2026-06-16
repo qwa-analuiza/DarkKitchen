@@ -1,0 +1,84 @@
+<div class="container">
+
+  <!-- VOLTAR -->
+  <div class="back">
+    <a routerLink="/" class="back-link">
+      <span class="material-icons">arrow_back</span>
+      Voltar
+    </a>
+  </div>
+
+  <!-- LOGO -->
+  <div class="logo-area">
+
+    <div class="logo-icon">
+      <span class="material-icons">local_fire_department</span>
+    </div>
+
+    <h1 class="tituloCriar">Criar Conta</h1>
+
+    <p class="subtitle">
+      Junte-se à nossa comunidade
+    </p>
+
+  </div>
+
+  <!-- CARD -->
+  <div class="card">
+
+    <!-- NOME -->
+    <div class="input-group">
+      <label>Nome completo</label>
+
+      <input
+        type="text"
+        placeholder="Seu nome"
+        [(ngModel)]="nome"
+        name="nome"
+      >
+    </div>
+
+    <!-- EMAIL -->
+    <div class="input-group">
+      <label>Email</label>
+
+      <input
+        type="email"
+        placeholder="seu@email.com"
+        [(ngModel)]="email"
+        name="email"
+      >
+    </div>
+
+    <!-- SENHA -->
+    <div class="input-group">
+      <label>Senha</label>
+
+      <input
+        type="password"
+        placeholder="Mínimo 6 caracteres"
+        [(ngModel)]="senha"
+        name="senha"
+      >
+    </div>
+
+    <!-- CONFIRMAR -->
+    <div class="input-group">
+      <label>Confirmar senha</label>
+
+      <input
+        type="password"
+        placeholder="Digite a senha novamente"
+        [(ngModel)]="confirmarSenha"
+        name="confirmarSenha"
+      >
+    </div>
+
+    <!-- BOTÃO -->
+    <button class="btn" type="button" (click)="cadastrar()">
+      Cadastrar
+    </button>
+
+  </div>
+
+</div>

@@ -1,0 +1,243 @@
+$bg-black-root: #0b0b0f;
+$bg-dark-card: #1c1c24;
+$accent-gold: #f1b813;
+$text-muted: #82828f;
+
+.cozinha-page-root {
+  display: flex;
+  background-color: $bg-black-root;
+  color: #ffffff;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+.cozinha-sidebar-left {
+  width: 240px; background-color: $bg-black-root; border-right: 1px solid #25252f;
+  position: fixed; height: 100vh; top: 0; left: 0; z-index: 100;
+}
+
+.cozinha-sidebar-brand {
+  padding: 30px 20px;
+  .cozinha-brand-wrapper {
+    display: flex; align-items: center; gap: 12px;
+    .cozinha-brand-icon-box { background: $accent-gold; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+    .cozinha-brand-text h2 { font-size: 16px; margin: 0; font-weight: 700; }
+    .cozinha-brand-text p { font-size: 11px; color: $text-muted; margin: 0; }
+  }
+}
+
+.cozinha-sidebar-menu {
+  display: flex; flex-direction: column; padding: 10px; gap: 6px;
+  .cozinha-menu-link {
+    display: flex; align-items: center; gap: 12px; padding: 12px 16px; color: $text-muted;
+    text-decoration: none; font-size: 14px; border-radius: 8px; cursor: pointer;
+    &:hover { color: #ffffff; background: rgba(255, 255, 255, 0.04); }
+    &.active-link { background-color: $accent-gold; color: #000000; font-weight: 600; }
+  }
+}
+
+.cozinha-main-workspace { flex: 1; margin-left: 240px; padding: 40px; box-sizing: border-box; }
+.cozinha-workspace-header { margin-bottom: 25px; h1 { font-size: 24px; font-weight: 700; } p { font-size: 13px; color: $text-muted; } }
+
+.flex-header-back {
+  display: flex; align-items: center; gap: 20px;
+  .btn-dark-action { background-color: #1c1c24; border: 1px solid #25252f; color: white; padding: 8px 16px; border-radius: 6px; cursor: pointer; }
+}
+
+// CARDS METRICAS
+.adm-metrics-top-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 30px; }
+.adm-mini-card {
+  background-color: $bg-dark-card; border: 1px solid #23232b; border-radius: 6px; padding: 18px; display: flex; flex-direction: column;
+  &.highlight-border-gold { border-color: rgba($accent-gold, 0.7); }
+  .adm-card-meta { display: flex; justify-content: space-between; font-size: 12px; color: $text-muted; }
+  .adm-card-value { font-size: 20px; font-weight: 700; margin: 8px 0; }
+  .text-red-value { color: #f25c5c !important; }
+  .adm-card-trend { font-size: 11px; &.trend-up { color: #2ecc71; } &.trend-danger { color: #e74c3c; } &.trend-down-good { color: #2ecc71; } }
+}
+
+.adm-charts-split-row { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 25px; margin-bottom: 30px; }
+.adm-chart-container-box {
+  background-color: $bg-dark-card; border: 1px solid #23232b; border-radius: 8px; padding: 24px;
+  h3 { font-size: 15px; margin: 0 0 20px 0; font-weight: 600; }
+}
+
+// 📊 ESTILIZAÇÃO DO GRÁFICO DE BARRAS VERTICAIS NATIVAS
+.native-bar-chart-wrapper {
+  display: flex; height: 220px; gap: 15px; position: relative;
+  
+  .chart-y-axis {
+    display: flex; flex-direction: column; justify-content: space-between;
+    color: $text-muted; font-size: 11px; text-align: right; width: 35px; padding-bottom: 20px;
+  }
+
+  .chart-bars-container {
+    flex: 1; display: flex; justify-content: space-between; align-items: flex-end;
+    border-bottom: 1px solid #25252f; padding-bottom: 4px;
+  }
+
+  .bar-column-item {
+    display: flex; flex-direction: column; align-items: center; flex: 1; height: 100%; justify-content: flex-end;
+  }
+
+  .bar-fill-track {
+    width: 26px; height: 85%; background-color: rgba(255,255,255,0.01); display: flex; align-items: flex-end;
+  }
+
+  .bar-actual-fill {
+    width: 100%; background-color: $accent-gold; border-radius: 4px 4px 0 0;
+    transition: height 0.5s ease-out; position: relative;
+    &:hover { background-color: #fcae13; }
+  }
+
+  .bar-label-day { color: $text-muted; font-size: 11px; margin-top: 8px; }
+}
+
+// 🍕 ESTILIZAÇÃO DO GRÁFICO DE PIZZA EM SVG NATIVO
+.native-pie-chart-wrapper {
+  display: flex; align-items: center; justify-content: space-around; height: 220px; gap: 10px;
+
+  .svg-pie-wrapper { width: 140px; height: 140px; }
+  .pie-svg-element { width: 100%; height: 100%; transform: rotate(-90deg); border-radius: 50%; }
+
+  .pie-slice {
+    fill: none; stroke-width: 32;
+  }
+  
+  .slice-green { stroke: #248a53; }
+  .slice-yellow { stroke: $accent-gold; }
+  .slice-orange { stroke: #d46b13; }
+  .slice-dark { stroke: #2b2b36; }
+
+  // Legendas Laterais
+  .pie-custom-legends { display: flex; flex-direction: column; gap: 12px; }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+  .dot.green { background-color: #248a53; }
+  .dot.yellow { background-color: $accent-gold; }
+  .dot.orange { background-color: #d46b13; }
+  .dot.dark { background-color: #2b2b36; }
+  
+  .txt-g { color: #2ecc71; } .txt-y { color: $accent-gold; } .txt-o { color: #f39c12; } .txt-d { color: $text-muted; }
+}
+
+// TABELA INFERIOR
+.adm-ranking-table-block { background-color: $bg-dark-card; border: 1px solid #23232b; border-radius: 8px; padding: 24px; h3 { font-size: 15px; margin-bottom: 20px; } }
+.adm-custom-table-wrapper {
+  display: flex; flex-direction: column; width: 100%;
+  .table-header-row { display: grid; grid-template-columns: 0.8fr 2fr 1.5fr 1.5fr 2fr; padding: 12px 16px; color: $text-muted; font-size: 12px; border-bottom: 1px solid #262633; }
+}
+.table-data-row-item {
+  display: grid; grid-template-columns: 0.8fr 2fr 1.5fr 1.5fr 2fr; padding: 16px; align-items: center; border-bottom: 1px solid #1f1f2a; font-size: 13px;
+  .font-bold-white { color: #ffffff; font-weight: 600; }
+}
+.rank-badge { width: 24px; height: 24px; border-radius: 50%; background: #2b2b36; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px; &.rank-first { background: $accent-gold; color: #000; } &.rank-second { background: rgba($accent-gold,0.2); color: $accent-gold; } }
+.progress-track-bar { background-color: #13131a; height: 6px; border-radius: 10px; width: 100%; overflow: hidden; }
+.progress-fill-gold { height: 100%; background-color: $accent-gold; border-radius: 10px; }
+
+// Alinhamento do Gráfico de Pizza Nativo em SVG
+.native-pie-chart-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 220px;
+  gap: 20px;
+
+  .svg-pie-wrapper {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .pie-svg-element {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+    border-radius: 50%;
+    background: #2b2b36; // Fundo escuro preventivo caso os status mudem
+  }
+
+  .pie-slice {
+    fill: none;
+    stroke-width: 32; // Alinhado perfeitamente com o raio 16 para preencher o círculo todo
+  }
+  
+  .slice-green { stroke: #248a53; }
+  .slice-yellow { stroke: #f1b813; }
+  .slice-orange { stroke: #d46b13; }
+  .slice-dark { stroke: #3a3a47; }
+
+  .pie-custom-legends {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    
+    &.green { background-color: #248a53; }
+    &.yellow { background-color: #f1b813; }
+    &.orange { background-color: #d46b13; }
+    &.dark { background-color: #3a3a47; }
+  }
+
+  .txt-g { color: #2ecc71; }
+  .txt-y { color: #f1b813; }
+  .txt-o { color: #f39c12; }
+  .txt-d { color: #82828f; }
+}
+// GARANTE QUE A SIDEBAR SE COMPORTE COMO UMA PILHA FLEXIVEL
+.cozinha-sidebar-left {
+  width: 240px;
+  background-color: #0b0b0f;
+  border-right: 1px solid #25252f;
+  position: fixed;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  padding-bottom: 25px; /* Espaço de segurança no rodapé */
+  z-index: 100;
+
+  // ESSA É A MÁGICA:
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important; 
+}
+
+// O MENU DO TOPO CRESCE ATÉ O LIMITE
+.cozinha-sidebar-menu-top {
+  flex: 1 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+// O MENU DO RODAPÉ TRAVA EMBAIXO COM UMA BORDA DIVISÓRIA
+.cozinha-sidebar-menu-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid #1f1f26 !important;
+  padding-top: 15px !important;
+  margin-top: auto !important; /* Empurra com força total para o final */
+}
+
+// Estilo do botão Sair em vermelho suave
+.link-logout {
+  color: #ff4d4d !important;
+  &:hover {
+    background: rgba(255, 77, 77, 0.12) !important;
+    color: #ffffff !important;
+  }
+}

@@ -1,0 +1,104 @@
+<div class="rastreamento-container">
+
+  <div class="header">
+<button class="back-btn" (click)="voltarInicio()">
+  ←
+</button>
+
+    <div>
+      <h2>Rastreamento</h2>
+      <span>#{{ pedido.id }}</span>
+    </div>
+  </div>
+
+  <div class="tempo-card">
+    <small>Tempo estimado</small>
+    <h1>{{ pedido.tempoEstimado }} min</h1>
+    <p>Seu pedido está a caminho!</p>
+  </div>
+
+  <div class="card">
+    <h3>Status do pedido</h3>
+
+    <div
+      class="timeline-item"
+      *ngFor="let etapa of etapas; let i = index"
+    >
+      <div class="timeline-icon" [class.active]="etapa.concluido">
+        ✓
+      </div>
+
+      <div class="timeline-content">
+        <h4>{{ etapa.titulo }}</h4>
+        <p>{{ etapa.descricao }}</p>
+
+        <span
+          *ngIf="i === 4"
+          class="andamento"
+        >
+          Em andamento
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Endereço de entrega</h3>
+
+    <div class="endereco">
+      <div>
+        <strong>{{ pedido.endereco.rua }}</strong>
+      </div>
+
+      <p>
+        {{ pedido.endereco.bairro }} -
+        {{ pedido.endereco.cidade }},
+        {{ pedido.endereco.estado }}
+      </p>
+
+      <p>CEP: {{ pedido.endereco.cep }}</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Resumo do pedido</h3>
+
+    <div
+      class="item"
+      *ngFor="let item of pedido.itens"
+    >
+      <div>
+        <strong>{{ item.quantidade }}x {{ item.nome }}</strong>
+        <p>{{ item.descricao }}</p>
+      </div>
+
+      <strong>
+        R$ {{ item.valor | number:'1.2-2' }}
+      </strong>
+    </div>
+
+    <hr>
+
+    <div class="linha-total">
+      <span>Subtotal</span>
+      <span>R$ {{ pedido.subtotal }}</span>
+    </div>
+
+    <div class="linha-total">
+      <span>Taxa de entrega</span>
+      <span>R$ {{ pedido.entrega }}</span>
+    </div>
+
+    <div class="linha-total total">
+      <span>Total</span>
+      <span>R$ {{ pedido.total }}</span>
+    </div>
+  </div>
+
+<button
+  class="btn-ajuda"
+  (click)="voltarInicio()">
+  Voltar para a página inicial
+</button>
+
+</div>

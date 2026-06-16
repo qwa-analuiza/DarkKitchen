@@ -1,0 +1,210 @@
+<main class="cart-page">
+
+  <!-- HEADER -->
+  <header class="topbar">
+
+    <button class="back-btn" (click)="voltar()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2.2">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+
+    <h1>Carrinho</h1>
+
+  </header>
+
+  <!-- LISTA DE ITENS -->
+  <section class="cart-container">
+
+    <article
+      class="cart-item"
+      *ngFor="let item of itens; let i = index">
+
+      <img
+        [src]="item.product.image"
+        [alt]="item.product.name"
+        class="product-image">
+
+      <div class="product-content">
+
+        <div class="product-header">
+
+          <div>
+
+            <h2>
+              {{ item.product.name }}
+            </h2>
+
+            <span class="price">
+              R$ {{ item.total.toFixed(2) }}
+            </span>
+
+          </div>
+
+          <button
+            class="delete-btn"
+            (click)="remover(i)">
+
+            🗑️
+
+          </button>
+
+        </div>
+
+        <!-- QUANTIDADE -->
+        <div class="quantity-control">
+
+          <button
+            class="qty-btn"
+            (click)="diminuirQuantidade(i)">
+
+            −
+
+          </button>
+
+          <span class="quantity">
+
+            {{ item.quantity }}
+
+          </span>
+
+          <button
+            class="qty-btn"
+            (click)="aumentarQuantidade(i)">
+
+            +
+
+          </button>
+
+        </div>
+
+        <!-- INGREDIENTES -->
+        <div
+          class="cart-details"
+          *ngIf="item.ingredients?.length">
+
+          <small>
+
+            <strong>Ingredientes:</strong>
+
+            <span
+              *ngFor="let ingredient of item.ingredients; let last = last">
+
+              {{ ingredient.name }}<span *ngIf="!last">, </span>
+
+            </span>
+
+          </small>
+
+        </div>
+
+        <!-- ADICIONAIS -->
+        <div
+          class="cart-details"
+          *ngIf="item.extras?.length">
+
+          <small>
+
+            <strong>Adicionais:</strong>
+
+            <span
+              *ngFor="let extra of item.extras; let last = last">
+
+              {{ extra.name }}<span *ngIf="!last">, </span>
+
+            </span>
+
+          </small>
+
+        </div>
+
+        <!-- OBSERVAÇÃO -->
+        <div
+          class="cart-details"
+          *ngIf="item.observation">
+
+          <small>
+
+            <strong>Obs:</strong>
+            {{ item.observation }}
+
+          </small>
+
+        </div>
+
+      </div>
+
+    </article>
+
+    <!-- CARRINHO VAZIO -->
+    <div
+      class="empty-cart"
+      *ngIf="itens.length === 0">
+
+      <h2>Seu carrinho está vazio</h2>
+
+      <p>
+        Adicione alguns produtos para continuar.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="cart-footer">
+
+    <div class="summary-row">
+
+      <span>Subtotal</span>
+
+      <span>
+        R$ {{ getSubtotal().toFixed(2) }}
+      </span>
+
+    </div>
+
+    <div class="summary-row">
+
+      <span>Taxa de entrega</span>
+
+      <span>
+        R$ 8.90
+      </span>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="summary-row total">
+
+      <span>Total</span>
+
+      <span>
+        R$ {{ getTotal().toFixed(2) }}
+      </span>
+
+    </div>
+
+    <button
+      class="checkout-btn"
+      (click)="irParaPagamento()"
+      [disabled]="itens.length === 0">
+
+      Ir para pagamento
+
+    </button>
+
+  </footer>
+
+</main>

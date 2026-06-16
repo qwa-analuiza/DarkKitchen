@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: #000;
+  color: #fff;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+}
+
+/* ==================================
+   CONTAINER
+================================== */
+
+.container {
+  width: 100%;
+  max-width: 520px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+
+  margin: auto;
+}
+
+/* ==================================
+   BOTÃO VOLTAR
+================================== */
+
+.back {
+  width: fit-content;
+
+  background: #ff8c2a;
+
+  padding: 8px 18px;
+
+  border-radius: 14px;
+
+  margin-bottom: 50px;
+}
+
+.back-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+/* ==================================
+   LOGO
+================================== */
+
+.logo-area {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.logo-icon {
+  width: 70px;
+  height: 70px;
+
+  background: #ff8c2a;
+
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto 15px;
+}
+
+.logo-icon span {
+  color: #000;
+  font-size: 32px;
+}
+
+.logo-area h1 {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.logo-area p {
+  color: #9a9a9a;
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* ==================================
+   TÍTULOS
+================================== */
+
+h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #9a9a9a;
+  font-size: 14px;
+  margin-bottom: 35px;
+}
+
+/* ==================================
+   CARD
+================================== */
+
+.card {
+  width: 100%;
+
+  background: linear-gradient(145deg, #111, #0a0a0a);
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+
+  border-radius: 14px;
+
+  padding: 25px;
+
+  text-align: left;
+
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.03);
+}
+
+/* ==================================
+   FORM
+================================== */
+
+label {
+  display: block;
+
+  color: #ddd;
+
+  font-size: 14px;
+
+  margin-bottom: 6px;
+}
+
+input {
+  width: 100%;
+
+  padding: 12px;
+
+  border-radius: 10px;
+
+  border: 1px solid #2f2f2f;
+
+  background: #0b0b0b;
+
+  color: #fff;
+
+  margin-bottom: 20px;
+
+  outline: none;
+
+  transition: 0.2s;
+}
+
+input::placeholder {
+  color: #777;
+}
+
+input:focus {
+  border-color: #ff8c2a;
+  box-shadow: 0 0 0 1px rgba(255,140,42,0.15);
+}
+
+/* ==================================
+   BOTÃO
+================================== */
+
+button {
+  width: 100%;
+
+  background: #ff8c2a;
+
+  color: #000;
+
+  border: none;
+
+  padding: 14px;
+
+  border-radius: 10px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+  transition: 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+/* ==================================
+   TABLET
+================================== */
+
+@media (max-width: 768px) {
+  body {
+    padding: 24px;
+  }
+
+  .container {
+    max-width: 500px;
+  }
+}
+
+/* ==================================
+   MOBILE
+================================== */
+
+@media (max-width: 480px) {
+  body {
+    padding: 16px;
+  }
+
+  .container {
+    max-width: 100%;
+  }
+
+  .back {
+    margin-bottom: 35px;
+  }
+
+  .logo-icon {
+    width: 65px;
+    height: 65px;
+  }
+
+  .logo-area h1 {
+    font-size: 22px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  input {
+    padding: 14px;
+  }
+
+  button {
+    padding: 15px;
+  }
+}
+
+/* ==================================
+   MONITORES GRANDES
+================================== */
+
+@media (min-width: 1400px) {
+  .container {
+    transform: scale(1.05);
+  }
+}
+
+:host {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

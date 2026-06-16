@@ -1,0 +1,188 @@
+<aside class="cozinha-sidebar-left">
+  <!-- Topo da Sidebar: Logo -->
+  <div class="cozinha-sidebar-brand">
+    <div class="cozinha-brand-wrapper">
+      <span class="cozinha-brand-icon-box">🔥</span>
+      <div class="cozinha-brand-text">
+        <h2>Sabor na Brasa</h2>
+        <p>Painel Admin</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Menu Superior: Navegação Principal com ativação de cor dinâmica -->
+  <nav class="cozinha-sidebar-menu cozinha-sidebar-menu-top">
+    <a (click)="router.navigate(['/dashboard'])" [class.active-link]="router.url === '/dashboard'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">📊</span><span>Dashboard</span>
+    </a>
+    <a (click)="router.navigate(['/cozinha'])" [class.active-link]="router.url === '/cozinha'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">👨‍🍳</span><span>Cozinha</span>
+    </a>
+    <a (click)="router.navigate(['/pedidos'])" [class.active-link]="router.url === '/pedidos'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">🛍️</span><span>Pedidos</span>
+    </a>
+    <a (click)="router.navigate(['/cardapio'])" [class.active-link]="router.url === '/cardapio'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">📜</span><span>Cardápio</span>
+    </a>
+    <a (click)="router.navigate(['/entregas'])" [class.active-link]="router.url === '/entregas'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">🛵</span><span>Entregas</span>
+    </a>
+    <a (click)="router.navigate(['/administracao'])" [class.active-link]="router.url === '/administracao'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">📈</span><span>Administração</span>
+    </a>
+  </nav>
+
+  <!-- Menu Inferior: Configurações e Sair no Canto Inferior Esquerdo -->
+  <nav class="cozinha-sidebar-menu cozinha-sidebar-menu-bottom">
+    <a (click)="router.navigate(['/configuracoes'])" [class.active-link]="router.url === '/configuracoes'" class="cozinha-menu-link">
+      <span class="cozinha-link-icon">⚙️</span><span>Configurações</span>
+    </a>
+    <a (click)="router.navigate(['/'])" class="cozinha-menu-link link-logout">
+      <span class="cozinha-link-icon">🚪</span><span>Sair</span>
+    </a>
+  </nav>
+</aside>
+  <main class="cozinha-main-workspace">
+    <header class="cozinha-workspace-header">
+      <h1>Todos os Pedidos</h1>
+      <p>Gestão completa de pedidos e histórico</p>
+    </header>
+
+    <div class="history-toolbar-row">
+      <div class="history-search-input-wrapper">
+        <span class="search-lens-icon">🔍</span>
+        <input 
+          type="text" 
+          [(ngModel)]="searchTerm" 
+          (input)="filterPedidos()"
+          placeholder="Buscar por pedido, cliente ou telefone..."
+        >
+      </div>
+      <button class="btn-toolbar-filter"><span>🎛️</span> Filtros</button>
+      <button class="btn-toolbar-filter"><span>📅</span> Data</button>
+    </div>
+
+    <div class="history-rows-stack">
+      @for (pedido of filteredPedidos; track pedido.id) {
+        <div class="history-row-item">
+          <div class="badge-number-box">{{ pedido.numero }}</div>
+          
+          <div class="customer-column-data">
+            <strong>{{ pedido.cliente }}</strong>
+            <span>📞 {{ pedido.telefone }}</span>
+            <span class="muted-address">📍 {{ pedido.endereco }}</span>
+          </div>
+          
+          <div class="items-column-data">
+            <strong>Itens do Pedido</strong>
+            @for (item of pedido.itens; track $index) {
+              <p>• {{ item.quantidade }}x {{ item.nome }}</p>
+            }
+          </div>
+          
+          <div class="price-column-data">
+            <span class="label-muted">Valor Total</span>
+            <strong class="text-gold-val">R$ {{ pedido.valorTotal | number:'1.2-2' }}</strong>
+            <span class="label-muted label-gap">Pagamento</span>
+            <span class="val-white">{{ pedido.pagamento }}</span>
+          </div>
+          
+          <div class="status-column-data">
+            <span class="label-muted">Status</span>
+            <span class="status-pill" [class]="getStatusClass(pedido.status)">
+              {{ getStatusText(pedido.status) }}
+            </span>
+            <span class="label-muted label-gap">Tempo</span>
+            <span class="val-white">{{ minutosDesde(pedido) }} min</span>
+          </div>
+          
+          <button class="btn-history-link" (click)="verDetalhes(pedido)">Ver Mais</button>
+        </div>
+      }
+    </div>
+  </main>
+
+  @if (modalDetalhesAberto && pedidoSelecionado) {
+    <div class="cozinha-overlay-box">
+      <div class="cozinha-modal-wrapper">
+        <div class="cozinha-modal-title-row">
+          <h2>Detalhes do Pedido <span class="text-gold-color">{{ pedidoSelecionado.numero }}</span></h2>
+          <button class="cozinha-modal-close-trigger" (click)="fecharModalDetalhes()">×</button>
+        </div>
+        <div class="cozinha-modal-scroller">
+          <div class="cozinha-detail-group">
+            <strong>Cliente comprador:</strong>
+            <p>{{ pedidoSelecionado.cliente }}</p>
+          </div>
+          <div class="cozinha-detail-group">
+            <strong>Telefone para contato:</strong>
+            <p>{{ pedidoSelecionado.telefone }}</p>
+          </div>
+          <div class="cozinha-detail-group">
+            <strong>Endereço de entrega:</strong>
+            <p>{{ pedidoSelecionado.endereco }}</p>
+          </div>
+          <div class="cozinha-detail-group">
+            <strong>Forma de pagamento:</strong>
+            <p>{{ pedidoSelecionado.pagamento }}</p>
+          </div>
+          <div class="cozinha-detail-group">
+            <strong>Produtos comprados:</strong>
+            <div class="cozinha-modal-items-subcard">
+              @for (item of pedidoSelecionado.itens; track $index) {
+                <div class="cozinha-subcard-item">
+                  <span>{{ item.quantidade }}x {{ item.nome }}</span>
+                  <span>R$ {{ (item.preco * item.quantidade) | number:'1.2-2' }}</span>
+                </div>
+              }
+            </div>
+          </div>
+          <div class="cozinha-modal-total-bottom">
+            <span>Total Geral:</span>
+            <span class="text-green-color">R$ {{ pedidoSelecionado.valorTotal | number:'1.2-2' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+  @if (modalNovoPedidoAberto) {
+    <div class="cozinha-overlay-box">
+      <div class="cozinha-modal-wrapper">
+        <div class="cozinha-modal-title-row">
+          <h2>Lançar Novo Pedido</h2>
+          <button class="cozinha-modal-close-trigger" (click)="fecharModalNovoPedido()">×</button>
+        </div>
+        <div class="cozinha-modal-scroller">
+          <div class="form-input-container">
+            <label>Nome do Cliente</label>
+            <input type="text" [(ngModel)]="novoPedido.cliente" placeholder="Insira o nome completo">
+          </div>
+          <div class="form-input-container">
+            <label>Telefone</label>
+            <input type="text" [(ngModel)]="novoPedido.telefone" placeholder="(11) 99999-9999">
+          </div>
+          <div class="form-input-container">
+            <label>Endereço de Entrega</label>
+            <input type="text" [(ngModel)]="novoPedido.endereco" placeholder="Rua, número, bairro">
+          </div>
+          <button class="cozinha-btn-action btn-gold text-bold" (click)="salvarLancamentoPedido()">Salvar Lançamento</button>
+        </div>
+      </div>
+    </div>
+  }
+  @if (modalLogoutAberto) {
+    <div class="cozinha-overlay-box overlay-logout animate-fade">
+      <div class="cozinha-modal-wrapper modal-logout-box">
+        <div class="logout-header">
+          <span class="logout-alert-icon">🚪</span>
+          <h2>Tem certeza que deseja sair?</h2>
+          <p>Você precisará inserir suas credenciais para acessar o painel administrativo novamente.</p>
+        </div>
+        <div class="logout-actions-row">
+          <button class="cozinha-btn-action btn-gray-cancel" (click)="fecharModalLogout()">Não, Voltar</button>
+          <button class="cozinha-btn-action btn-red-confirm" (click)="confirmarSair()">Sim, Sair</button>
+        </div>
+      </div>
+    </div>
+  }

@@ -1,0 +1,85 @@
+<main class="container">
+<header class="back" (click)="voltar()">
+    <span class="material-icons">arrow_back</span>
+    <span class="back-link">Pagamento</span>
+  </header>
+
+  <div class="card payment-card-group">
+    <h2>Método de pagamento</h2>
+    
+    <div class="options-list">
+      <label class="option-item" [class.active]="metodoSelecionado === 'credito'">
+        <input type="radio" name="metodoPagamento" value="credito" [(ngModel)]="metodoSelecionado">
+        <span class="radio-circle"></span>
+        <span class="material-icons item-icon">credit_card</span>
+        <span class="item-label">Cartão de crédito</span>
+      </label>
+
+      <label class="option-item" [class.active]="metodoSelecionado === 'pix'">
+        <input type="radio" name="metodoPagamento" value="pix" [(ngModel)]="metodoSelecionado">
+        <span class="radio-circle"></span>
+        <span class="material-icons item-icon">phone_android</span>
+        <span class="item-label">PIX</span>
+      </label>
+
+      <label class="option-item" [class.active]="metodoSelecionado === 'dinheiro'">
+        <input type="radio" name="metodoPagamento" value="dinheiro" [(ngModel)]="metodoSelecionado">
+        <span class="radio-circle"></span>
+        <span class="material-icons item-icon">payments</span>
+        <span class="item-label">Dinheiro</span>
+      </label>
+    </div>
+  </div>
+
+  <div class="card dynamic-section-card" *ngIf="metodoSelecionado === 'credito'">
+    <h2>Dados do cartão</h2>
+    
+    <div class="input-group">
+      <label for="numeroCartao">Número do cartão</label>
+      <input type="text" id="numeroCartao" placeholder="0000 0000 0000 0000" [(ngModel)]="dadosCartao.numero">
+    </div>
+
+    <div class="input-group">
+      <label for="nomeCartao">Nome no cartão</label>
+      <input type="text" id="nomeCartao" placeholder="Como está no cartão" [(ngModel)]="dadosCartao.nome">
+    </div>
+
+    <div class="input-row">
+      <div class="input-group flex-1">
+        <label for="validade">Validade</label>
+        <input type="text" id="validade" placeholder="MM/AA" [(ngModel)]="dadosCartao.validade">
+      </div>
+      
+      <div class="input-group flex-1">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" placeholder="123" [(ngModel)]="dadosCartao.cvv">
+      </div>
+    </div>
+  </div>
+
+  <div class="card dynamic-section-card pix-container" *ngIf="metodoSelecionado === 'pix'">
+    <div class="qr-code-placeholder">
+      <span>QR Code PIX</span>
+    </div>
+    <p class="pix-instructions">Escaneie o QR Code para pagar</p>
+    <div class="pix-price">R$ {{ pedidoService.total | number:'1.2-2' }}</div>
+  </div>
+
+  <div class="card dynamic-section-card" *ngIf="metodoSelecionado === 'dinheiro'">
+    <h2>Troco para quanto?</h2>
+    <div class="input-group">
+      <input type="text" id="troco" placeholder="Ex: 150,00" [(ngModel)]="dadosDinheiro.trocoPara">
+      <span class="input-help">Deixe em branco se não precisar de troco</span>
+    </div>
+  </div>
+
+  <footer class="payment-footer">
+    <div class="footer-inner">
+      <div class="total-row">
+        <span class="total-label">Total a pagar</span>
+        <span class="total-price">R$ {{ pedidoService.total | number:'1.2-2' }}</span>
+      </div>
+      <button type="button" (click)="confirmarPagamento()">Confirmar pagamento</button>
+    </div>
+  </footer>
+</main>
